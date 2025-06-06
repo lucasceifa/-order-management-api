@@ -18,10 +18,14 @@ builder.Services.AddDbContext<MainDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MainDB")); 
 });
 
-
 #region Declarando dependências da classe Cliente
 builder.Services.AddTransient<ClienteService, ClienteService>();
 builder.Services.AddTransient<IClienteRepositorio, ClienteRepositorio>();
+#endregion
+
+#region Declarando dependências da classe Produto
+builder.Services.AddTransient<ProdutoService, ProdutoService>();
+builder.Services.AddTransient<IProdutoRepositorio, ProdutoRepositorio>();
 #endregion
 
 var app = builder.Build();

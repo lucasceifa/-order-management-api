@@ -89,6 +89,91 @@
           }
         }
       }
+    },
+    "/api/Produto": {
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Produto"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Produto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Produto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Produto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Produto/{id}": {
+      "get": {
+        "tags": [
+          "Produto"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Produto"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -121,6 +206,43 @@
           "telefone": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Produto": {
+        "required": [
+          "dataDeCadastro",
+          "id",
+          "nome",
+          "preco",
+          "quantidadeDisponivel"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "dataDeCadastro": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nome": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string",
+            "nullable": true
+          },
+          "preco": {
+            "type": "number",
+            "format": "double"
+          },
+          "quantidadeDisponivel": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

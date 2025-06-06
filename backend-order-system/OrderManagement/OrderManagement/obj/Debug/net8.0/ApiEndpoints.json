@@ -56,5 +56,63 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OrderManagement.API.Controllers.ProdutoController",
+    "Method": "ObterProdutos",
+    "RelativePath": "api/Produto",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OrderManagement.API.Controllers.ProdutoController",
+    "Method": "Post",
+    "RelativePath": "api/Produto",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "OrderManagement.Domain.Produto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OrderManagement.API.Controllers.ProdutoController",
+    "Method": "ObterProdutoPorId",
+    "RelativePath": "api/Produto/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OrderManagement.API.Controllers.ProdutoController",
+    "Method": "DeletarProdutoPorId",
+    "RelativePath": "api/Produto/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
