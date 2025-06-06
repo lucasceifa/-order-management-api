@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.API", "OrderManagement\OrderManagement.API.csproj", "{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Dominio", "OrderManagement.Domain\OrderManagement.Dominio.csproj", "{360F723F-E997-4A71-AC2D-2154B62CF739}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{360F723F-E997-4A71-AC2D-2154B62CF739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{360F723F-E997-4A71-AC2D-2154B62CF739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{360F723F-E997-4A71-AC2D-2154B62CF739}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{360F723F-E997-4A71-AC2D-2154B62CF739}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B92D4E45-4B4D-45E9-924C-D36A219727C6}
+	EndGlobalSection
+EndGlobal
