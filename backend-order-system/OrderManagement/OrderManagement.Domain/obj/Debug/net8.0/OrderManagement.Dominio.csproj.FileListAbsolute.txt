@@ -1,0 +1,13 @@
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\bin\Debug\net8.0\OrderManagement.Dominio.deps.json
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\bin\Debug\net8.0\OrderManagement.Dominio.dll
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\bin\Debug\net8.0\OrderManagement.Dominio.pdb
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\obj\Debug\net8.0\OrderManagement.Dominio.csproj.AssemblyReference.cache
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\obj\Debug\net8.0\OrderManagement.Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\obj\Debug\net8.0\OrderManagement.Dominio.AssemblyInfoInputs.cache
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\obj\Debug\net8.0\OrderManagement.Dominio.AssemblyInfo.cs
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\obj\Debug\net8.0\OrderManagement.Dominio.csproj.CoreCompileInputs.cache
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\obj\Debug\net8.0\OrderManagement.Dominio.sourcelink.json
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\obj\Debug\net8.0\OrderManagement.Dominio.dll
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\obj\Debug\net8.0\refint\OrderManagement.Dominio.dll
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\obj\Debug\net8.0\OrderManagement.Dominio.pdb
+C:\Users\LUCAS\Desktop\-order-management-api\backend-order-system\OrderManagement\OrderManagement.Domain\obj\Debug\net8.0\ref\OrderManagement.Dominio.dll

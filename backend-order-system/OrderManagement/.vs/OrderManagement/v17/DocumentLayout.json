@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{360F723F-E997-4A71-AC2D-2154B62CF739}|OrderManagement.Domain\\OrderManagement.Dominio.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement.domain\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{360F723F-E997-4A71-AC2D-2154B62CF739}|OrderManagement.Domain\\OrderManagement.Dominio.csproj|solutionrelative:ordermanagement.domain\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6ACB2270-B45B-4BC4-B557-25B37F8C6E5C}|OrderManagement.Repositorio\\OrderManagement.Repositorio.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement.repositorio\\clienterepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6ACB2270-B45B-4BC4-B557-25B37F8C6E5C}|OrderManagement.Repositorio\\OrderManagement.Repositorio.csproj|solutionrelative:ordermanagement.repositorio\\clienterepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}|OrderManagement\\OrderManagement.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}|OrderManagement\\OrderManagement.csproj|solutionrelative:ordermanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}|OrderManagement\\OrderManagement.API.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}|OrderManagement\\OrderManagement.API.csproj|solutionrelative:ordermanagement\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{84A836AF-11FD-4110-B27A-145362AF9E3A}|OrderManagement.Servico\\OrderManagement.Servico.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement.servico\\clienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84A836AF-11FD-4110-B27A-145362AF9E3A}|OrderManagement.Servico\\OrderManagement.Servico.csproj|solutionrelative:ordermanagement.servico\\clienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{360F723F-E997-4A71-AC2D-2154B62CF739}|OrderManagement.Domain\\OrderManagement.Dominio.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement.domain\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,8 +23,28 @@
       "RelativeMoniker": "D:0:0:{360F723F-E997-4A71-AC2D-2154B62CF739}|OrderManagement.Domain\\OrderManagement.Dominio.csproj|solutionrelative:ordermanagement.domain\\entidade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}|OrderManagement\\OrderManagement.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}|OrderManagement\\OrderManagement.csproj|solutionrelative:ordermanagement\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{360F723F-E997-4A71-AC2D-2154B62CF739}|OrderManagement.Domain\\OrderManagement.Dominio.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement.domain\\interfaces\\iclienterepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360F723F-E997-4A71-AC2D-2154B62CF739}|OrderManagement.Domain\\OrderManagement.Dominio.csproj|solutionrelative:ordermanagement.domain\\interfaces\\iclienterepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}|OrderManagement\\OrderManagement.API.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}|OrderManagement\\OrderManagement.API.csproj|solutionrelative:ordermanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360F723F-E997-4A71-AC2D-2154B62CF739}|OrderManagement.Domain\\OrderManagement.Dominio.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement.domain\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360F723F-E997-4A71-AC2D-2154B62CF739}|OrderManagement.Domain\\OrderManagement.Dominio.csproj|solutionrelative:ordermanagement.domain\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}|OrderManagement\\OrderManagement.API.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}|OrderManagement\\OrderManagement.API.csproj|solutionrelative:ordermanagement\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{360F723F-E997-4A71-AC2D-2154B62CF739}|OrderManagement.Domain\\OrderManagement.Dominio.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement.domain\\maindbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{360F723F-E997-4A71-AC2D-2154B62CF739}|OrderManagement.Domain\\OrderManagement.Dominio.csproj|solutionrelative:ordermanagement.domain\\maindbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}|OrderManagement\\OrderManagement.API.csproj|c:\\users\\lucas\\desktop\\-order-management-api\\backend-order-system\\ordermanagement\\ordermanagement\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4C508D5F-BA33-465E-8FE5-4A88D544CF0F}|OrderManagement\\OrderManagement.API.csproj|solutionrelative:ordermanagement\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,31 +57,92 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IClienteRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Domain\\Interfaces\\IClienteRepositorio.cs",
+              "RelativeDocumentMoniker": "OrderManagement.Domain\\Interfaces\\IClienteRepositorio.cs",
+              "ToolTip": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Domain\\Interfaces\\IClienteRepositorio.cs",
+              "RelativeToolTip": "OrderManagement.Domain\\Interfaces\\IClienteRepositorio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T18:04:48.635Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ClienteRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Repositorio\\ClienteRepositorio.cs",
+              "RelativeDocumentMoniker": "OrderManagement.Repositorio\\ClienteRepositorio.cs",
+              "ToolTip": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Repositorio\\ClienteRepositorio.cs",
+              "RelativeToolTip": "OrderManagement.Repositorio\\ClienteRepositorio.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAqwCoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T18:04:08.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Produto.cs",
               "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Domain\\Produto.cs",
               "RelativeDocumentMoniker": "OrderManagement.Domain\\Produto.cs",
               "ToolTip": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Domain\\Produto.cs",
               "RelativeToolTip": "OrderManagement.Domain\\Produto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-06T17:55:52.422Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement\\Program.cs",
+              "RelativeDocumentMoniker": "OrderManagement\\Program.cs",
+              "ToolTip": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement\\Program.cs",
+              "RelativeToolTip": "OrderManagement\\Program.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAACkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T17:02:26.89Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "OrderManagement\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement\\appsettings.Development.json",
+              "RelativeToolTip": "OrderManagement\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-06T18:08:17.632Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Cliente.cs",
+              "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Domain\\Cliente.cs",
+              "RelativeDocumentMoniker": "OrderManagement.Domain\\Cliente.cs",
+              "ToolTip": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Domain\\Cliente.cs",
+              "RelativeToolTip": "OrderManagement.Domain\\Cliente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T17:03:07.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Entidade.cs",
               "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Domain\\Entidade.cs",
               "RelativeDocumentMoniker": "OrderManagement.Domain\\Entidade.cs",
               "ToolTip": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Domain\\Entidade.cs",
               "RelativeToolTip": "OrderManagement.Domain\\Entidade.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-06T17:50:34.709Z",
               "EditorCaption": ""
@@ -65,32 +150,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Cliente.cs",
-              "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Domain\\Cliente.cs",
-              "RelativeDocumentMoniker": "OrderManagement.Domain\\Cliente.cs",
-              "ToolTip": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Domain\\Cliente.cs",
-              "RelativeToolTip": "OrderManagement.Domain\\Cliente.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAYAAAAAAAAAA==",
+              "Title": "ClienteService.cs",
+              "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Servico\\ClienteService.cs",
+              "RelativeDocumentMoniker": "OrderManagement.Servico\\ClienteService.cs",
+              "ToolTip": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Servico\\ClienteService.cs",
+              "RelativeToolTip": "OrderManagement.Servico\\ClienteService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T17:03:07.782Z",
+              "WhenOpened": "2025-06-06T19:43:00.296Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement\\Program.cs",
-              "RelativeDocumentMoniker": "OrderManagement\\Program.cs",
-              "ToolTip": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement\\Program.cs",
-              "RelativeToolTip": "OrderManagement\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAXAAAAAAAAAA==",
+              "Title": "ClienteController.cs",
+              "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement\\Controllers\\ClienteController.cs",
+              "RelativeDocumentMoniker": "OrderManagement\\Controllers\\ClienteController.cs",
+              "ToolTip": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement\\Controllers\\ClienteController.cs",
+              "RelativeToolTip": "OrderManagement\\Controllers\\ClienteController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAQwB8AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-06T17:02:26.89Z",
+              "WhenOpened": "2025-06-06T19:46:30.376Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
+              "Title": "MainDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Domain\\MainDBContext.cs",
+              "RelativeDocumentMoniker": "OrderManagement.Domain\\MainDBContext.cs",
+              "ToolTip": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement.Domain\\MainDBContext.cs",
+              "RelativeToolTip": "OrderManagement.Domain\\MainDBContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T18:12:09.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\LUCAS\\Desktop\\-order-management-api\\backend-order-system\\OrderManagement\\OrderManagement\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "OrderManagement\\Properties\\launchSettings.json",
