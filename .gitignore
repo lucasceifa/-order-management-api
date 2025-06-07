@@ -1,0 +1,71 @@
+# Pastas de build
+bin/
+obj/
+out/
+
+# Dados de build do VS
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Arquivos temporários e backups
+*.log
+*.tlog
+*.cache
+*.bak
+*.tmp
+*.vsidx
+*.vssscc
+*.vssscc
+*.DS_Store
+*.ncb
+*.aps
+*.ilk
+
+# Arquivos de lock do NuGet
+project.lock.json
+project.fragment.lock.json
+*.nuget.props
+*.nuget.targets
+*.snupkg
+
+# Diretórios do NuGet
+packages/
+.nuget/
+
+# Arquivos gerados pelo runtime
+*.exe
+*.dll
+*.pdb
+*.mdb
+
+# Configurações de IDEs
+.idea/
+.vscode/
+*.code-workspace
+
+# Testes
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Publicações locais
+publish/
+App_Data/
+wwwroot/
+
+# Outros
+_ReSharper*/
+*.resharper
+*.dotCover
+*.orig
+*.dbmdl
+*.jfm
+*.docstates
+
+# SQL Server generated
+*.mdf
+*.ldf
