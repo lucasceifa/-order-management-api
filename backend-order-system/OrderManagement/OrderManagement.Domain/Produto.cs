@@ -1,4 +1,5 @@
 ﻿using OrderManagement.Dominio;
+using OrderManagement.Dominio.Requests;
 using System.ComponentModel.DataAnnotations;
 
 namespace OrderManagement.Domain
@@ -15,5 +16,15 @@ namespace OrderManagement.Domain
 
         [Required]
         public int QuantidadeDisponivel { get; set; }
+
+        public Produto() { }
+
+        public Produto(ProdutoInput input)
+        {
+            Nome = input.Nome;
+            Descricao = input.Descricao;
+            Preco = input.Preco;
+            QuantidadeDisponivel = input.QuantidadeDisponivel;
+        }
     }
 }
