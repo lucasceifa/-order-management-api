@@ -11,5 +11,14 @@ namespace OrderManagement.Dominio
         public string Email { get; set; }
 
         public string? Telefone { get; set; }
+
+        public Cliente() { }
+
+        public Cliente(ClienteInput input)
+        {
+            Nome = input.Nome;
+            Email = input.Email;
+            Telefone = input.Telefone;
+        }
     }
 }

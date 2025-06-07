@@ -2,6 +2,8 @@
 using Microsoft.IdentityModel.Tokens;
 using OrderManagement.Domain;
 using OrderManagement.Dominio;
+using OrderManagement.Dominio.Requests;
+using OrderManagement.Dominio.Utils;
 using OrderManagement.Servico;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -20,9 +22,9 @@ namespace OrderManagement.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ObterProdutos()
+        public async Task<IActionResult> ObterProdutos([FromBody] ParametrosBuscaProduto filtro)
         {
-            var Produtos = await _servProduto.ObterAsync();
+            var Produtos = await _servProduto.ObterAsync(filtro);
             if (Produtos.IsNullOrEmpty())
                 return NotFound();
 
@@ -39,8 +41,16 @@ namespace OrderManagement.API.Controllers
             return Ok(Produto);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Produto request)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarProduto(Guid id, [FromBody] ProdutoInput request)
+        {
+            await _servProduto.AtualizarPorIdAsync(id, request);
+
+            return Ok();
+        }
+
+        [HttpPost()]
+        public async Task<IActionResult> Post([FromBody] ProdutoInput request)
         {
             await _servProduto.CriarAsync(request);
 

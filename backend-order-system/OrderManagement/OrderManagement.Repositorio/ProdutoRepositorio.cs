@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using OrderManagement.Domain;
 using OrderManagement.Dominio;
 using OrderManagement.Dominio.Interfaces;
+using OrderManagement.Dominio.Utils;
 
 namespace OrderManagement.Repositorio
 {
@@ -62,12 +63,37 @@ namespace OrderManagement.Repositorio
             return await connection.QueryFirstAsync<Produto>(query, new { Id = id });
         }
 
-        public async Task<IEnumerable<Produto>> ObterAsync()
+        public async Task<IEnumerable<Produto>> ObterAsync(ParametrosBuscaProduto filtro)
         {
-            var query = "SELECT * FROM Produto";
-            var connection = CreateConnection();
+            var query = @"SELECT * FROM Produto WHERE 1=1";
+            var parameters = new DynamicParameters();
 
-            return await connection.QueryAsync<Produto>(query);
+            if (!string.IsNullOrWhiteSpace(filtro.Nome))
+            {
+                query += " AND LOWER(Nome) LIKE @Nome";
+                parameters.Add("Nome", $"%{filtro.Nome.ToLower()}%");
+            }
+
+            if (filtro.PrecoMin.HasValue)
+            {
+                query += " AND Preco >= @PrecoMin";
+                parameters.Add("PrecoMin", filtro.PrecoMin.Value);
+            }
+
+            if (filtro.PrecoMax.HasValue)
+            {
+                query += " AND Preco <= @PrecoMax";
+                parameters.Add("PrecoMax", filtro.PrecoMax.Value);
+            }
+
+            if (filtro.QuantidadeDisponivel.HasValue)
+            {
+                query += " AND QuantidadeDisponivel = @QuantidadeDisponivel";
+                parameters.Add("QuantidadeDisponivel", filtro.QuantidadeDisponivel.Value);
+            }
+
+            var connection = CreateConnection();
+            return await connection.QueryAsync<Produto>(query, parameters);
         }
     }
 }

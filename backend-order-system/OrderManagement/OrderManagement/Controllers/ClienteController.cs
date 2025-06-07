@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using OrderManagement.Dominio;
+using OrderManagement.Dominio.Utils;
 using OrderManagement.Servico;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,9 +20,9 @@ namespace OrderManagement.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ObterClientes()
+        public async Task<IActionResult> ObterClientes([FromBody] ParametrosBuscaCliente filtro)
         {
-            var clientes = await _servCliente.ObterAsync();
+            var clientes = await _servCliente.ObterAsync(filtro);
             if (clientes.IsNullOrEmpty())
                 return NotFound();
 
@@ -39,9 +40,17 @@ namespace OrderManagement.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Cliente request)
+        public async Task<IActionResult> Post([FromBody] ClienteInput request)
         {
             await _servCliente.CriarAsync(request);
+
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(Guid id, [FromBody] ClienteInput request)
+        {
+            await _servCliente.AtualizarPorIdAsync(id, request);
 
             return Ok();
         }
