@@ -20,7 +20,7 @@ namespace OrderManagement.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ObterClientes([FromBody] ParametrosBuscaCliente filtro)
+        public async Task<IActionResult> ObterClientes([FromQuery] ParametrosBuscaCliente filtro)
         {
             var clientes = await _servCliente.ObterAsync(filtro);
             if (clientes.IsNullOrEmpty())

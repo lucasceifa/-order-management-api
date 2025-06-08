@@ -22,7 +22,7 @@ namespace OrderManagement.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ObterProdutos([FromBody] ParametrosBuscaProduto filtro)
+        public async Task<IActionResult> ObterProdutos([FromQuery] ParametrosBuscaProduto filtro)
         {
             var Produtos = await _servProduto.ObterAsync(filtro);
             if (Produtos.IsNullOrEmpty())

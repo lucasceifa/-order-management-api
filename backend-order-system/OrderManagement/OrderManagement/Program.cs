@@ -30,20 +30,29 @@ builder.Services.AddTransient<IProdutoRepositorio, ProdutoRepositorio>();
 
 var app = builder.Build();
 
-#region Iniciando tabelas da Database em SQL
+#region Iniciando tabelas da Database em SQL e injetando dados caso estejam vazios
 using (var scope = app.Services.CreateScope())
 {
     var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
     var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-    var scriptPath = Path.Combine(Directory.GetCurrentDirectory(), "Scripts", "tables.sql");
+    var scriptFolder = Path.Combine(Directory.GetCurrentDirectory(), "Scripts");
 
-    if (File.Exists(scriptPath))
+    var tablesScriptPath = Path.Combine(scriptFolder, "tables.sql");
+    var dataScriptPath = Path.Combine(scriptFolder, "tables_data.sql");
+
+    using var connection = new SqlConnection(connectionString);
+
+    if (File.Exists(tablesScriptPath))
     {
-        var script = File.ReadAllText(scriptPath);
+        var tablesScript = File.ReadAllText(tablesScriptPath);
+        await connection.ExecuteAsync(tablesScript);
+    }
 
-        using var connection = new SqlConnection(connectionString);
-        await connection.ExecuteAsync(script);
+    if (File.Exists(dataScriptPath))
+    {
+        var dataScript = File.ReadAllText(dataScriptPath);
+        await connection.ExecuteAsync(dataScript);
     }
 }
 #endregion

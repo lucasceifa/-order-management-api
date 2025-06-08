@@ -1,4 +1,3 @@
--- Tabela Cliente
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Cliente' AND xtype='U')
 BEGIN
     CREATE TABLE Cliente (
@@ -10,7 +9,6 @@ BEGIN
     )
 END
 
--- Tabela Produto
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Produto' AND xtype='U')
 BEGIN
     CREATE TABLE Produto (

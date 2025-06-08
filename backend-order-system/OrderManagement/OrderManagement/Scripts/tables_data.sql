@@ -1,0 +1,71 @@
+IF NOT EXISTS (SELECT 1 FROM Cliente)
+BEGIN
+    INSERT INTO Cliente (Id, DataDeCadastro, Nome, Email, Telefone) VALUES 
+    (NEWID(), GETDATE(), 'Ana Lima', 'ana.lima@email.com', '11911110001'),
+    (NEWID(), GETDATE(), 'Carlos Silva', 'carlos.silva@email.com', '11911110002'),
+    (NEWID(), GETDATE(), 'Fernanda Souza', 'fernanda.souza@email.com', '11911110003'),
+    (NEWID(), GETDATE(), 'João Pedro', 'joao.pedro@email.com', '11911110004'),
+    (NEWID(), GETDATE(), 'Mariana Alves', 'mariana.alves@email.com', '11911110005'),
+    (NEWID(), GETDATE(), 'Bruno Mendes', 'bruno.mendes@email.com', '11911110006'),
+    (NEWID(), GETDATE(), 'Letícia Castro', 'leticia.castro@email.com', '11911110007'),
+    (NEWID(), GETDATE(), 'Felipe Andrade', 'felipe.andrade@email.com', '11911110008'),
+    (NEWID(), GETDATE(), 'Juliana Costa', 'juliana.costa@email.com', '11911110009'),
+    (NEWID(), GETDATE(), 'André Monteiro', 'andre.monteiro@email.com', '11911110010'),
+    (NEWID(), GETDATE(), 'Renata Dias', 'renata.dias@email.com', '11911110011'),
+    (NEWID(), GETDATE(), 'Thiago Rocha', 'thiago.rocha@email.com', '11911110012'),
+    (NEWID(), GETDATE(), 'Camila Martins', 'camila.martins@email.com', '11911110013'),
+    (NEWID(), GETDATE(), 'Lucas Oliveira', 'lucas.oliveira@email.com', '11911110014'),
+    (NEWID(), GETDATE(), 'Vanessa Ribeiro', 'vanessa.ribeiro@email.com', '11911110015'),
+    (NEWID(), GETDATE(), 'Eduardo Paiva', 'eduardo.paiva@email.com', '11911110016'),
+    (NEWID(), GETDATE(), 'Patrícia Ramos', 'patricia.ramos@email.com', '11911110017'),
+    (NEWID(), GETDATE(), 'Marcelo Teixeira', 'marcelo.teixeira@email.com', '11911110018'),
+    (NEWID(), GETDATE(), 'Isabela Nunes', 'isabela.nunes@email.com', '11911110019'),
+    (NEWID(), GETDATE(), 'Ricardo Lima', 'ricardo.lima@email.com', '11911110020')
+END
+
+IF NOT EXISTS (SELECT 1 FROM Produto)
+BEGIN
+    INSERT INTO Produto (Id, DataDeCadastro, Nome, Descricao, Preco, QuantidadeDisponivel)
+    VALUES 
+    (NEWID(), GETDATE(), 'Notebook Pro 14', 'Notebook com 16GB RAM e SSD 512GB', 4599.90, 10),
+    (NEWID(), GETDATE(), 'Smartphone Z Max', 'Tela AMOLED, 128GB', 1999.99, 30),
+    (NEWID(), GETDATE(), 'Mouse Gamer', 'RGB, 6 botões', 149.90, 50),
+    (NEWID(), GETDATE(), 'Cadeira Ergonômica', 'Ajuste lombar, tecido respirável', 899.00, 20),
+    (NEWID(), GETDATE(), 'Monitor 27"', '4K Ultra HD, HDMI/DisplayPort', 1399.00, 15),
+    (NEWID(), GETDATE(), 'Teclado Mecânico', 'Switch red, layout ABNT2', 289.99, 40),
+    (NEWID(), GETDATE(), 'Headset Surround', 'Som 7.1 e microfone removível', 349.50, 25),
+    (NEWID(), GETDATE(), 'Webcam HD', '720p com microfone embutido', 119.90, 100),
+    (NEWID(), GETDATE(), 'Fonte 650W', '80 Plus Bronze', 329.00, 18),
+    (NEWID(), GETDATE(), 'Placa de Vídeo GTX 1660', '6GB GDDR5', 1499.99, 8),
+    (NEWID(), GETDATE(), 'SSD 1TB NVMe', 'Leitura 3500MB/s', 599.90, 12),
+    (NEWID(), GETDATE(), 'HD 2TB', 'SATA III 7200RPM', 399.00, 20),
+    (NEWID(), GETDATE(), 'Roteador Wi-Fi 6', 'Dual-band 1800Mbps', 449.00, 15),
+    (NEWID(), GETDATE(), 'Smartwatch Fit', 'Monitoramento cardíaco', 499.00, 22),
+    (NEWID(), GETDATE(), 'Echo Speaker', 'Assistente de voz Alexa', 399.00, 35),
+    (NEWID(), GETDATE(), 'Carregador Turbo', 'USB-C 33W', 89.90, 60),
+    (NEWID(), GETDATE(), 'Notebook Ultra Slim', 'Leve e rápido, ideal para trabalho', 3899.00, 6),
+    (NEWID(), GETDATE(), 'Tablet 10"', 'Quad-core, 64GB', 1099.00, 28),
+    (NEWID(), GETDATE(), 'Projetor Portátil', 'Resolução HD, HDMI', 799.00, 9),
+    (NEWID(), GETDATE(), 'Suporte Articulado', 'Para monitores de até 32"', 149.00, 45),
+
+    (NEWID(), GETDATE(), 'Câmera de Segurança', 'Wi-Fi, visão noturna', 299.00, 30),
+    (NEWID(), GETDATE(), 'Cabo HDMI 2.1', '2 metros, 8K', 49.90, 70),
+    (NEWID(), GETDATE(), 'Estabilizador 600VA', 'Proteção contra surtos', 219.00, 20),
+    (NEWID(), GETDATE(), 'Filtro de Linha', '6 tomadas com proteção', 69.90, 55),
+    (NEWID(), GETDATE(), 'Cooler CPU', 'PWM 120mm silencioso', 89.00, 48),
+    (NEWID(), GETDATE(), 'Hub USB 3.0', '4 portas com alimentação', 99.00, 60),
+    (NEWID(), GETDATE(), 'Controle Bluetooth', 'Compatível com PC e celular', 179.00, 25),
+    (NEWID(), GETDATE(), 'Power Bank 20000mAh', 'Saída rápida', 149.00, 30),
+    (NEWID(), GETDATE(), 'Luminária LED', 'Toque ajustável, USB', 89.90, 40),
+    (NEWID(), GETDATE(), 'Capa para Notebook', '15.6", resistente a água', 79.90, 50),
+    (NEWID(), GETDATE(), 'Adaptador HDMI-VGA', 'Com áudio auxiliar', 39.90, 65),
+    (NEWID(), GETDATE(), 'Caixa de Som Bluetooth', '12W RMS', 129.90, 32),
+    (NEWID(), GETDATE(), 'Mousepad XXL', '80x30cm, base antiderrapante', 59.90, 80),
+    (NEWID(), GETDATE(), 'Cartão MicroSD 128GB', 'Classe 10 UHS-I', 119.90, 42),
+    (NEWID(), GETDATE(), 'Kit Teclado e Mouse', 'Wireless 2.4GHz', 159.00, 38),
+    (NEWID(), GETDATE(), 'Antena Digital Interna', 'Compatível com TV Full HD', 49.00, 50),
+    (NEWID(), GETDATE(), 'Conversor Digital', 'HDMI e USB', 89.00, 20),
+    (NEWID(), GETDATE(), 'Fone Intra-auricular', 'Com microfone', 59.00, 90),
+    (NEWID(), GETDATE(), 'Bateria CR2032', 'Pack com 5 unidades', 19.90, 100),
+    (NEWID(), GETDATE(), 'Espelho Smart LED', 'Toque e ajuste de brilho', 229.00, 15)
+END
