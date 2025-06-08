@@ -33,7 +33,7 @@ namespace OrderManagement.Servico
             await _repCliente.AtualizarAsync(clienteOriginal);
         }
 
-        public async Task CriarAsync(ClienteInput request)
+        public async Task<Guid> CriarAsync(ClienteInput request)
         {
             if (!request.Validate())
                 throw new ArgumentException("Formulário de preenchimento inválido");
@@ -44,6 +44,8 @@ namespace OrderManagement.Servico
             var newCliente = new Cliente(request);
 
             await _repCliente.CriarAsync(newCliente);
+
+            return newCliente.Id;
         }
 
         public async Task DeletarAsync(Guid id)
