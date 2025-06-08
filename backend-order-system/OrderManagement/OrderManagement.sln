@@ -8,13 +8,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.API", "Orde
 		{360F723F-E997-4A71-AC2D-2154B62CF739} = {360F723F-E997-4A71-AC2D-2154B62CF739}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Dominio", "OrderManagement.Domain\OrderManagement.Dominio.csproj", "{360F723F-E997-4A71-AC2D-2154B62CF739}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Domain", "OrderManagement.Domain\OrderManagement.Domain.csproj", "{360F723F-E997-4A71-AC2D-2154B62CF739}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Repositorio", "OrderManagement.Repositorio\OrderManagement.Repositorio.csproj", "{6ACB2270-B45B-4BC4-B557-25B37F8C6E5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Repository", "OrderManagement.Repositorio\OrderManagement.Repository.csproj", "{6ACB2270-B45B-4BC4-B557-25B37F8C6E5C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagement.Service", "OrderManagement.Servico\OrderManagement.Service.csproj", "{84A836AF-11FD-4110-B27A-145362AF9E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teste.Services", "Teste.Services\Teste.Services.csproj", "{41F1E2BD-267F-43D5-B926-93CE012F1E57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Services", "Teste.Services\Test.Services.csproj", "{41F1E2BD-267F-43D5-B926-93CE012F1E57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,6 @@
-IF NOT EXISTS (SELECT 1 FROM Cliente)
+IF NOT EXISTS (SELECT 1 FROM Costumer)
 BEGIN
-    INSERT INTO Cliente (Id, DataDeCadastro, Nome, Email, Telefone) VALUES 
+    INSERT INTO Costumer (Id, CreationDate, Name, Email, Cellphone) VALUES 
     (NEWID(), GETDATE(), 'Ana Lima', 'ana.lima@email.com', '11911110001'),
     (NEWID(), GETDATE(), 'Carlos Silva', 'carlos.silva@email.com', '11911110002'),
     (NEWID(), GETDATE(), 'Fernanda Souza', 'fernanda.souza@email.com', '11911110003'),
@@ -23,9 +23,9 @@ BEGIN
     (NEWID(), GETDATE(), 'Ricardo Lima', 'ricardo.lima@email.com', '11911110020')
 END
 
-IF NOT EXISTS (SELECT 1 FROM Produto)
+IF NOT EXISTS (SELECT 1 FROM Product)
 BEGIN
-    INSERT INTO Produto (Id, DataDeCadastro, Nome, Descricao, Preco, QuantidadeDisponivel)
+    INSERT INTO Product (Id, CreationDate, Name, Description, Price, QuantityAvailable)
     VALUES 
     (NEWID(), GETDATE(), 'Notebook Pro 14', 'Notebook com 16GB RAM e SSD 512GB', 4599.90, 10),
     (NEWID(), GETDATE(), 'Smartphone Z Max', 'Tela AMOLED, 128GB', 1999.99, 30),
@@ -51,7 +51,7 @@ BEGIN
     (NEWID(), GETDATE(), 'Câmera de Segurança', 'Wi-Fi, visão noturna', 299.00, 30),
     (NEWID(), GETDATE(), 'Cabo HDMI 2.1', '2 metros, 8K', 49.90, 70),
     (NEWID(), GETDATE(), 'Estabilizador 600VA', 'Proteção contra surtos', 219.00, 20),
-    (NEWID(), GETDATE(), 'Filtro de Linha', '6 tomadas com proteção', 69.90, 55),
+    (NEWID(), GETDATE(), 'filter de Linha', '6 tomadas com proteção', 69.90, 55),
     (NEWID(), GETDATE(), 'Cooler CPU', 'PWM 120mm silencioso', 89.00, 48),
     (NEWID(), GETDATE(), 'Hub USB 3.0', '4 portas com alimentação', 99.00, 60),
     (NEWID(), GETDATE(), 'Controle Bluetooth', 'Compatível com PC e celular', 179.00, 25),

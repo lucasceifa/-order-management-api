@@ -2,18 +2,18 @@
 
 namespace OrderManagement.Dominio
 {
-    public class Entidade
+    public class Entity
     {
         [Required]
         public Guid Id { get; set; }
 
         [Required]
-        public DateTime DataDeCadastro { get; set; }
+        public DateTime CreationDate { get; set; }
 
-        public Entidade()
+        public Entity()
         {
             Id = Guid.NewGuid();
-            DataDeCadastro = DateTime.Now;
+            CreationDate = DateTime.Now;
         }
     }
 }

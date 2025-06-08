@@ -1,22 +1,47 @@
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Cliente' AND xtype='U')
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Costumer' AND xtype='U')
 BEGIN
-    CREATE TABLE Cliente (
+    CREATE TABLE Costumer (
         Id UNIQUEIDENTIFIER PRIMARY KEY,
-        DataDeCadastro DATETIME NOT NULL,
-        Nome NVARCHAR(100) NOT NULL,
+        CreationDate DATETIME NOT NULL,
+        Name NVARCHAR(100) NOT NULL,
         Email NVARCHAR(100) NOT NULL,
-        Telefone NVARCHAR(20) NULL
+        Cellphone NVARCHAR(20) NULL
     )
 END
 
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Produto' AND xtype='U')
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Product' AND xtype='U')
 BEGIN
-    CREATE TABLE Produto (
+    CREATE TABLE Product (
         Id UNIQUEIDENTIFIER PRIMARY KEY,
-        DataDeCadastro DATETIME NOT NULL,
-        Nome NVARCHAR(100) NOT NULL,
-        Descricao NVARCHAR(MAX) NULL,
-        Preco FLOAT NOT NULL,
-        QuantidadeDisponivel INT NOT NULL
+        CreationDate DATETIME NOT NULL,
+        Name NVARCHAR(100) NOT NULL,
+        Description NVARCHAR(MAX) NULL,
+        Price FLOAT NOT NULL,
+        QuantityAvailable INT NOT NULL
+    )
+END
+
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Order' AND xtype='U')
+BEGIN
+    CREATE TABLE [Order] (
+        Id UNIQUEIDENTIFIER PRIMARY KEY,
+        CostumerId UNIQUEIDENTIFIER NOT NULL,
+        Status INT NOT NULL,
+        CreationDate DATETIME NOT NULL,
+        CancellationDate DATETIME NULL
+    )
+END
+
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='OrderXProduct' AND xtype='U')
+BEGIN
+    CREATE TABLE OrderXProduct (
+        Id UNIQUEIDENTIFIER PRIMARY KEY,
+        CreationDate DATETIME NOT NULL,
+        ProductId UNIQUEIDENTIFIER NOT NULL,
+        OrderId UNIQUEIDENTIFIER NOT NULL,
+        Status INT NOT NULL,
+        PurchasedQuantity INT NOT NULL,
+        FOREIGN KEY (ProductId) REFERENCES Product(Id),
+        FOREIGN KEY (OrderId) REFERENCES [Order](Id)
     )
 END

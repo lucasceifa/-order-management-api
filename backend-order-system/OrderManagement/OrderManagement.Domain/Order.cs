@@ -1,0 +1,22 @@
+﻿using OrderManagement.Dominio;
+using OrderManagement.Dominio.Enums;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OrderManagement.Domain
+{
+    public class Order : Entity
+    {
+        [Required]
+        public Guid CostumerId { get; set; }
+
+        [Required]
+        public IOrderStatus Status { get; set; }
+
+        public DateTime? CancellationDate { get; set; }
+    }
+}

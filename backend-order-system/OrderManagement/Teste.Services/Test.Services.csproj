@@ -17,10 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OrderManagement.Domain\OrderManagement.Dominio.csproj" />
-    <ProjectReference Include="..\OrderManagement.Repositorio\OrderManagement.Repositorio.csproj" />
+    <ProjectReference Include="..\OrderManagement.Domain\OrderManagement.Domain.csproj" />
+    <ProjectReference Include="..\OrderManagement.Repositorio\OrderManagement.Repository.csproj" />
     <ProjectReference Include="..\OrderManagement.Servico\OrderManagement.Service.csproj" />
-    <ProjectReference Include="..\OrderManagement\OrderManagement.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
