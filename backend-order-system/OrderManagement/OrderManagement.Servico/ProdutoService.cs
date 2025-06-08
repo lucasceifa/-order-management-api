@@ -32,7 +32,7 @@ namespace OrderManagement.Servico
             await _repProduto.AtualizarAsync(produtoOriginal);
         }
 
-        public async Task CriarAsync(ProdutoInput request)
+        public async Task<Guid> CriarAsync(ProdutoInput request)
         {
             if (!request.Validate())
                 throw new ArgumentException("Formulário de preenchimento inválido");
@@ -40,6 +40,8 @@ namespace OrderManagement.Servico
             var novoProduto = new Produto(request);
 
             await _repProduto.CriarAsync(novoProduto);
+
+            return novoProduto.Id;
         }
 
         public async Task DeletarAsync(Guid id)
