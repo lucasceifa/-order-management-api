@@ -2,22 +2,22 @@
 using OrderManagement.Dominio.Interfaces;
 using OrderManagement.Dominio.Utils;
 
-namespace OrderManagement.API.Teste.Services.RepositoriosMock
+namespace OrderManagement.API.Teste.Services.RepositorysMock
 {
-    public class ClienteRepositorioMock : IClienteRepositorio
+    public class CostumerRepositoryMock : ICostumerRepository
     {
-        private List<Cliente> _dados;
+        private List<Costumer> _dados;
 
-        public ClienteRepositorioMock()
+        public CostumerRepositoryMock()
         {
             if (_dados == null)
-                _dados = new List<Cliente>();
+                _dados = new List<Costumer>();
         }
 
-        public async Task AtualizarAsync(Cliente cliente)
+        public async Task UpdateAsync(Costumer Costumer)
         {
-            var index = _dados.FindIndex(c => c.Id == cliente.Id);
-            _dados[index] = cliente;
+            var index = _dados.FindIndex(c => c.Id == Costumer.Id);
+            _dados[index] = Costumer;
         }
 
         public async Task<bool> CheckEmailExistsAsync(string email)
@@ -25,22 +25,22 @@ namespace OrderManagement.API.Teste.Services.RepositoriosMock
             return _dados.Any(c => c.Email == email);
         }
 
-        public async Task CriarAsync(Cliente cliente)
+        public async Task CreateAsync(Costumer Costumer)
         {
-            _dados.Add(cliente);
+            _dados.Add(Costumer);
         }
 
-        public async Task DeletarAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             _dados = _dados.Where(c => c.Id != id).ToList();
         }
 
-        public async Task<IEnumerable<Cliente>> ObterAsync(ParametrosBuscaCliente filtro)
+        public async Task<IEnumerable<Costumer>> GetAsync(SearchfilterCostumer filter)
         {
-            return _dados.Where(e => (!filtro.DataDeCadastro.HasValue || e.DataDeCadastro > filtro.DataDeCadastro) && (String.IsNullOrEmpty(filtro.Email) || e.Email.ToLower().Contains(filtro.Email)) || (String.IsNullOrEmpty(filtro.Nome) || e.Nome.ToLower().Contains(filtro.Nome)));
+            return _dados.Where(e => (!filter.CreationDate.HasValue || e.CreationDate > filter.CreationDate) && (String.IsNullOrEmpty(filter.Email) || e.Email.ToLower().Contains(filter.Email)) || (String.IsNullOrEmpty(filter.Name) || e.Name.ToLower().Contains(filter.Name)));
         }
 
-        public async Task<Cliente?> ObterPorIdAsync(Guid id)
+        public async Task<Costumer?> GetByIdAsync(Guid id)
         {
             return _dados.FirstOrDefault(c => c.Id == id);
         }

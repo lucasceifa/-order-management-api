@@ -1,272 +1,275 @@
 ﻿using OrderManagement.Dominio;
 using OrderManagement.Dominio.Requests;
 using OrderManagement.Dominio.Utils;
-using OrderManagement.Servico;
-using OrderManagement.API.Teste.Services.RepositoriosMock;
+using OrderManagement.Service;
+using OrderManagement.API.Teste.Services.RepositorysMock;
 using Xunit;
 
-namespace OrderManagement.API.Testes.Service
+namespace OrderManagement.API.Tests.Service
 {
-    [Collection("Teste do serviço de produtos")]
-    public class ProdutoServiceTest
+    [Collection("Product Service Test")]
+    public class ProductServiceTest
     {
-        public ProdutoService ObterService()
+        public ProductService GetService()
         {
-            var produtoRepositorio = new ProdutoRepositorioMock();
-            return new ProdutoService(produtoRepositorio);
+            var productRepository = new ProductRepositoryMock();
+            return new ProductService(productRepository);
         }
 
-        public static class Dados
+        public static class TestData
         {
-            public static IEnumerable<object[]> ProdutosValidos =>
+            public static IEnumerable<object[]> ValidProducts =>
                 new List<object[]>
                 {
                     new object[]
                     {
-                        new ProdutoInput
+                        new ProductInput
                         {
-                            Nome = "Notebook Dell",
-                            Descricao = "Modelo Inspiron 15",
-                            Preco = 4500.00,
-                            QuantidadeDisponivel = 10
+                            Name = "Dell Notebook",
+                            Description = "Inspiron 15 Model",
+                            Price = 4500.00,
+                            QuantityAvailable = 10
                         }
                     },
                     new object[]
                     {
-                        new ProdutoInput
+                        new ProductInput
                         {
-                            Nome = "Mouse Logitech",
-                            Descricao = "Sem fio",
-                            Preco = 150.00,
-                            QuantidadeDisponivel = 50
+                            Name = "Logitech Mouse",
+                            Description = "Wireless",
+                            Price = 150.00,
+                            QuantityAvailable = 50
                         }
                     },
                     new object[]
                     {
-                        new ProdutoInput
+                        new ProductInput
                         {
-                            Nome = "Teclado Mecânico",
-                            Descricao = "ABNT2 RGB",
-                            Preco = 300.00,
-                            QuantidadeDisponivel = 20
+                            Name = "Mechanical Keyboard",
+                            Description = "ABNT2 RGB",
+                            Price = 300.00,
+                            QuantityAvailable = 20
                         }
                     },
                     new object[]
                     {
-                        new ProdutoInput
+                        new ProductInput
                         {
-                            Nome = "Monitor LG",
-                            Descricao = "27 polegadas 4K",
-                            Preco = 1200.00,
-                            QuantidadeDisponivel = 5
+                            Name = "LG Monitor",
+                            Description = "27 inches 4K",
+                            Price = 1200.00,
+                            QuantityAvailable = 5
                         }
                     },
                     new object[]
                     {
-                        new ProdutoInput
+                        new ProductInput
                         {
-                            Nome = "Headset HyperX",
-                            Descricao = "Cloud Stinger",
-                            Preco = 400.00,
-                            QuantidadeDisponivel = 15
+                            Name = "HyperX Headset",
+                            Description = "Cloud Stinger",
+                            Price = 400.00,
+                            QuantityAvailable = 15
                         }
                     }
                 };
 
-            public static IEnumerable<object[]> ProdutosInvalidos =>
+            public static IEnumerable<object[]> InvalidProducts =>
                 new List<object[]>
                 {
                     new object[]
                     {
-                        new ProdutoInput
+                        new ProductInput
                         {
-                            Nome = "",
-                            Descricao = "Teste",
-                            Preco = 100,
-                            QuantidadeDisponivel = 10
+                            Name = "",
+                            Description = "Test",
+                            Price = 100,
+                            QuantityAvailable = 10
                         }
                     },
                     new object[]
                     {
-                        new ProdutoInput
+                        new ProductInput
                         {
-                            Nome = "A",
-                            Descricao = "Teste",
-                            Preco = 100,
-                            QuantidadeDisponivel = 10
+                            Name = "A",
+                            Description = "Test",
+                            Price = 100,
+                            QuantityAvailable = 10
                         }
                     },
                     new object[]
                     {
-                        new ProdutoInput
+                        new ProductInput
                         {
-                            Nome = "Produto Sem Preço",
-                            Descricao = "Teste",
-                            Preco = -1,
-                            QuantidadeDisponivel = 10
+                            Name = "No Price Product",
+                            Description = "Test",
+                            Price = -1,
+                            QuantityAvailable = 10
                         }
                     },
                     new object[]
                     {
-                        new ProdutoInput
+                        new ProductInput
                         {
-                            Nome = "Produto Sem Estoque",
-                            Descricao = "Teste",
-                            Preco = 100,
-                            QuantidadeDisponivel = -5
+                            Name = "No Stock Product",
+                            Description = "Test",
+                            Price = 100,
+                            QuantityAvailable = -5
                         }
                     }
                 };
         }
 
-        #region Métodos de validação com resultado positivo
-        [Theory(DisplayName = "Criando produtos válidos")]
-        [MemberData(nameof(Dados.ProdutosValidos), MemberType = typeof(Dados))]
-        public async Task CriarProdutosValidos(ProdutoInput input)
+        #region Positive Test Cases
+
+        [Theory(DisplayName = "Creating valid Products")]
+        [MemberData(nameof(TestData.ValidProducts), MemberType = typeof(TestData))]
+        public async Task CreateValidProducts(ProductInput input)
         {
-            var service = ObterService();
-            await service.CriarAsync(input);
+            var service = GetService();
+            await service.CreateAsync(input);
 
-            var produtos = await service.ObterAsync(new ParametrosBuscaProduto { });
+            var products = await service.GetAsync(new SearchfilterProduct { });
 
-            Assert.True(produtos.Any(p => p.Nome == input.Nome && p.Preco == input.Preco && p.QuantidadeDisponivel == input.QuantidadeDisponivel));
+            Assert.True(products.Any(p => p.Name == input.Name && p.Price == input.Price && p.QuantityAvailable == input.QuantityAvailable));
         }
 
-        [Theory(DisplayName = "Criando produto e dando GetPorId")]
-        [MemberData(nameof(Dados.ProdutosValidos), MemberType = typeof(Dados))]
-        public async Task UsandoGetByID(ProdutoInput input)
+        [Theory(DisplayName = "Creating Product and retrieving by ID")]
+        [MemberData(nameof(TestData.ValidProducts), MemberType = typeof(TestData))]
+        public async Task RetrieveProductById(ProductInput input)
         {
-            var service = ObterService();
-            var response = await service.CriarAsync(input);
+            var service = GetService();
+            var response = await service.CreateAsync(input);
 
-            var produto = await service.ObterPorIdAsync(response);
+            var product = await service.GetByIdAsync(response);
 
-            Assert.True(produto != null && produto.Id == response);
+            Assert.True(product != null && product.Id == response);
         }
 
-        [Theory(DisplayName = "Criando produto e excluindo")]
-        [MemberData(nameof(Dados.ProdutosValidos), MemberType = typeof(Dados))]
-        public async Task UsandoDeleteByID(ProdutoInput input)
+        [Theory(DisplayName = "Creating and deleting Product")]
+        [MemberData(nameof(TestData.ValidProducts), MemberType = typeof(TestData))]
+        public async Task DeleteProductById(ProductInput input)
         {
-            var service = ObterService();
-            var response = await service.CriarAsync(input);
+            var service = GetService();
+            var response = await service.CreateAsync(input);
 
-            await service.DeletarAsync(response);
-            var produtos = await service.ObterAsync(new ParametrosBuscaProduto { });
+            await service.DeleteAsync(response);
+            var products = await service.GetAsync(new SearchfilterProduct { });
 
-            Assert.True(produtos.All(p => p.Id != response));
+            Assert.True(products.All(p => p.Id != response));
         }
 
-        [Theory(DisplayName = "Criando produto e atualizando")]
-        [MemberData(nameof(Dados.ProdutosValidos), MemberType = typeof(Dados))]
-        public async Task UsandoUpdateByID(ProdutoInput input)
+        [Theory(DisplayName = "Creating and updating Product")]
+        [MemberData(nameof(TestData.ValidProducts), MemberType = typeof(TestData))]
+        public async Task UpdateProductById(ProductInput input)
         {
-            var service = ObterService();
-            var produtoBase = new ProdutoInput
+            var service = GetService();
+            var baseProduct = new ProductInput
             {
-                Nome = "Produto Original",
-                Descricao = "Descrição original",
-                Preco = 999.99,
-                QuantidadeDisponivel = 1
+                Name = "Original Product",
+                Description = "Original description",
+                Price = 999.99,
+                QuantityAvailable = 1
             };
 
-            var id = await service.CriarAsync(produtoBase);
-            await service.AtualizarPorIdAsync(id, input);
+            var id = await service.CreateAsync(baseProduct);
+            await service.UpdateByIdAsync(id, input);
 
-            var produto = await service.ObterPorIdAsync(id);
-            Assert.True(produto != null && produto.Nome == input.Nome);
+            var product = await service.GetByIdAsync(id);
+            Assert.True(product != null && product.Name == input.Name);
         }
 
         #endregion
 
-        #region Métodos de validação com retorno de exceção
-        [Theory(DisplayName = "Criando produtos inválidos")]
-        [MemberData(nameof(Dados.ProdutosInvalidos), MemberType = typeof(Dados))]
-        public async Task CriarProdutosInvalidos(ProdutoInput input)
-        {
-            var service = ObterService();
+        #region Exception Test Cases
 
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.CriarAsync(input));
+        [Theory(DisplayName = "Creating invalid Products")]
+        [MemberData(nameof(TestData.InvalidProducts), MemberType = typeof(TestData))]
+        public async Task CreateInvalidProducts(ProductInput input)
+        {
+            var service = GetService();
+
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.CreateAsync(input));
         }
 
-        [Theory(DisplayName = "Atualizando produtos inválidos")]
-        [MemberData(nameof(Dados.ProdutosInvalidos), MemberType = typeof(Dados))]
-        public async Task AtualizarProdutosInvalidos(ProdutoInput input)
+        [Theory(DisplayName = "Updating invalid Products")]
+        [MemberData(nameof(TestData.InvalidProducts), MemberType = typeof(TestData))]
+        public async Task UpdateInvalidProducts(ProductInput input)
         {
-            var service = ObterService();
-            var produtoValido = new ProdutoInput
+            var service = GetService();
+            var validProduct = new ProductInput
             {
-                Nome = "Produto válido",
-                Descricao = "Descrição",
-                Preco = 200,
-                QuantidadeDisponivel = 10
+                Name = "Valid Product",
+                Description = "Description",
+                Price = 200,
+                QuantityAvailable = 10
             };
 
-            var id = await service.CriarAsync(produtoValido);
+            var id = await service.CreateAsync(validProduct);
 
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.AtualizarPorIdAsync(id, input));
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.UpdateByIdAsync(id, input));
         }
 
-        [Fact(DisplayName = "Atualizando produto com ID inexistente")]
-        public async Task AtualizandoProdutoComIdInexistente()
+        [Fact(DisplayName = "Updating Product with non-existent ID")]
+        public async Task UpdateProductWithNonExistentId()
         {
-            var service = ObterService();
-            var produtoValido = new ProdutoInput
+            var service = GetService();
+            var validProduct = new ProductInput
             {
-                Nome = "Produto válido",
-                Descricao = "Descrição",
-                Preco = 200,
-                QuantidadeDisponivel = 10
+                Name = "Valid Product",
+                Description = "Description",
+                Price = 200,
+                QuantityAvailable = 10
             };
 
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await service.AtualizarPorIdAsync(Guid.NewGuid(), produtoValido));
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await service.UpdateByIdAsync(Guid.NewGuid(), validProduct));
         }
 
-        [Fact(DisplayName = "Deletando produto com ID inválido")]
-        public async Task DeletarProdutoComIdInvalido()
+        [Fact(DisplayName = "Deleting Product with empty ID")]
+        public async Task DeleteProductWithEmptyId()
         {
-            var service = ObterService();
+            var service = GetService();
 
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.DeletarAsync(Guid.Empty));
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.DeleteAsync(Guid.Empty));
         }
 
-        [Fact(DisplayName = "Deletando produto com ID inexistente")]
-        public async Task DeletarProdutoComIdInexistente()
+        [Fact(DisplayName = "Deleting Product with non-existent ID")]
+        public async Task DeleteProductWithNonExistentId()
         {
-            var service = ObterService();
+            var service = GetService();
 
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await service.DeletarAsync(Guid.NewGuid()));
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await service.DeleteAsync(Guid.NewGuid()));
         }
 
-        [Fact(DisplayName = "Obter produto por ID inválido")]
-        public async Task GetProdutoPorIdInvalido()
+        [Fact(DisplayName = "Getting Product by empty ID")]
+        public async Task GetProductByEmptyId()
         {
-            var service = ObterService();
+            var service = GetService();
 
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.ObterPorIdAsync(Guid.Empty));
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetByIdAsync(Guid.Empty));
         }
 
-        [Fact(DisplayName = "Obter produto por ID inexistente")]
-        public async Task GetProdutoPorIdInexistente()
+        [Fact(DisplayName = "Getting Product by non-existent ID")]
+        public async Task GetProductByNonExistentId()
         {
-            var service = ObterService();
+            var service = GetService();
 
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await service.ObterPorIdAsync(Guid.NewGuid()));
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await service.GetByIdAsync(Guid.NewGuid()));
         }
 
-        [Fact(DisplayName = "Obter produtos com filtro inválido")]
-        public async Task GetProdutosComFiltroInvalido()
+        [Fact(DisplayName = "Getting Products with invalid filter")]
+        public async Task GetProductsWithInvalidFilter()
         {
-            var service = ObterService();
-            var filtro = new ParametrosBuscaProduto
+            var service = GetService();
+            var filter = new SearchfilterProduct
             {
-                PrecoMin = 500,
-                PrecoMax = 100,
-                QuantidadeDisponivel = -1
+                PriceMin = 500,
+                PriceMax = 100,
+                QuantityAvailable = -1
             };
 
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.ObterAsync(filtro));
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetAsync(filter));
         }
+
         #endregion
     }
 }

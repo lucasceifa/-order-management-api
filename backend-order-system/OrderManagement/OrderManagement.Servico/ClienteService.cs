@@ -3,81 +3,81 @@ using OrderManagement.Dominio;
 using OrderManagement.Dominio.Interfaces;
 using OrderManagement.Dominio.Utils;
 
-namespace OrderManagement.Servico
+namespace OrderManagement.Service
 {
-    public class ClienteService
+    public class CostumerService
     {
-        private readonly IClienteRepositorio _repCliente;
+        private readonly ICostumerRepository _repCostumer;
 
-        public ClienteService(IClienteRepositorio repCliente)
+        public CostumerService(ICostumerRepository repCostumer)
         { 
-            _repCliente = repCliente;
+            _repCostumer = repCostumer;
         }
 
-        public async Task AtualizarPorIdAsync(Guid id, ClienteInput request)
+        public async Task UpdateByIdAsync(Guid id, CostumerInput request)
         {
             if (!request.Validate())
-                throw new ArgumentException("Formulário de preenchimento inválido");
+                throw new ArgumentException("Invalid filled form");
 
-            var clienteOriginal = await _repCliente.ObterPorIdAsync(id);
-            if (clienteOriginal == null)
-                throw new HttpRequestException("Cliente não encontrado");
+            var CostumerOriginal = await _repCostumer.GetByIdAsync(id);
+            if (CostumerOriginal == null)
+                throw new HttpRequestException("Costumer not found");
 
-            if (request.Email != clienteOriginal.Email && await _repCliente.CheckEmailExistsAsync(request.Email))
-                throw new DuplicateNameException("Email já está em uso por outro cliente");
+            if (request.Email != CostumerOriginal.Email && await _repCostumer.CheckEmailExistsAsync(request.Email))
+                throw new DuplicateNameException("Email already in use");
 
-            clienteOriginal.Email = request.Email;
-            clienteOriginal.Telefone = request.Telefone;
-            clienteOriginal.Nome = request.Nome;
+            CostumerOriginal.Email = request.Email;
+            CostumerOriginal.Cellphone = request.Cellphone;
+            CostumerOriginal.Name = request.Name;
 
-            await _repCliente.AtualizarAsync(clienteOriginal);
+            await _repCostumer.UpdateAsync(CostumerOriginal);
         }
 
-        public async Task<Guid> CriarAsync(ClienteInput request)
+        public async Task<Guid> CreateAsync(CostumerInput request)
         {
             if (!request.Validate())
-                throw new ArgumentException("Formulário de preenchimento inválido");
+                throw new ArgumentException("Invalid filled form");
 
-            if (await _repCliente.CheckEmailExistsAsync(request.Email))
-                throw new DuplicateNameException("Email já está em uso por outro cliente");
+            if (await _repCostumer.CheckEmailExistsAsync(request.Email))
+                throw new DuplicateNameException("Email already in use");
 
-            var newCliente = new Cliente(request);
+            var newCostumer = new Costumer(request);
 
-            await _repCliente.CriarAsync(newCliente);
+            await _repCostumer.CreateAsync(newCostumer);
 
-            return newCliente.Id;
+            return newCostumer.Id;
         }
 
-        public async Task DeletarAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             if (id == Guid.Empty)
-                throw new ArgumentException("ID inválido");
+                throw new ArgumentException("Invalid ID");
 
-            var cliente = await _repCliente.ObterPorIdAsync(id);
-            if (cliente == null)
-                throw new HttpRequestException("Cliente não encontrado");
+            var Costumer = await _repCostumer.GetByIdAsync(id);
+            if (Costumer == null)
+                throw new HttpRequestException("Costumer not found");
 
-            await _repCliente.DeletarAsync(id);
+            await _repCostumer.DeleteAsync(id);
         }
 
-        public async Task<Cliente> ObterPorIdAsync(Guid id)
+        public async Task<Costumer> GetByIdAsync(Guid id)
         {
             if (id == Guid.Empty)
-                throw new ArgumentException("ID inválido");
+                throw new ArgumentException("Invalid ID");
 
-            var response = await _repCliente.ObterPorIdAsync(id);
+            var response = await _repCostumer.GetByIdAsync(id);
             if (response == null)
-                throw new HttpRequestException("Cliente não encontrado");
+                throw new HttpRequestException("Costumer not found");
 
             return response;
         }
 
-        public async Task<IEnumerable<Cliente>> ObterAsync(ParametrosBuscaCliente filtro)
+        public async Task<IEnumerable<Costumer>> GetAsync(SearchfilterCostumer filter)
         {
-            if (filtro.DataDeCadastro.HasValue && filtro.DataDeCadastro.Value > DateTime.Now)
-                throw new ArgumentException("Data de cadastro não pode ser superior a data atual");
+            if (filter.CreationDate.HasValue && filter.CreationDate.Value > DateTime.Now)
+                throw new ArgumentException("Creation date cannot be later than today's date");
 
-            return await _repCliente.ObterAsync(filtro);
+            return await _repCostumer.GetAsync(filter);
         }
     }
 }

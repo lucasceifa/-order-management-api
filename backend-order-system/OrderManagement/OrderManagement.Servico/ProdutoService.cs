@@ -4,79 +4,79 @@ using OrderManagement.Dominio.Interfaces;
 using OrderManagement.Dominio.Requests;
 using OrderManagement.Dominio.Utils;
 
-namespace OrderManagement.Servico
+namespace OrderManagement.Service
 {
-    public class ProdutoService
+    public class ProductService
     {
-        private readonly IProdutoRepositorio _repProduto;
+        private readonly IProductRepository _repProduct;
 
-        public ProdutoService(IProdutoRepositorio repProduto)
+        public ProductService(IProductRepository repProduct)
         {
-            _repProduto = repProduto;
+            _repProduct = repProduct;
         }
 
-        public async Task AtualizarPorIdAsync(Guid id, ProdutoInput request)
+        public async Task UpdateByIdAsync(Guid id, ProductInput request)
         {
             if (!request.Validate())
-                throw new ArgumentException("Formulário de preenchimento inválido");
+                throw new ArgumentException("Invalid filled form");
 
-            var produtoOriginal = await _repProduto.ObterPorIdAsync(id);
-            if (produtoOriginal == null)
-                throw new HttpRequestException("Produto não encontrado");
+            var ProductOriginal = await _repProduct.GetByIdAsync(id);
+            if (ProductOriginal == null)
+                throw new HttpRequestException("Product not found");
 
-            produtoOriginal.Nome = request.Nome;
-            produtoOriginal.Descricao = request.Descricao;
-            produtoOriginal.Preco = request.Preco;
-            produtoOriginal.QuantidadeDisponivel = request.QuantidadeDisponivel;
+            ProductOriginal.Name = request.Name;
+            ProductOriginal.Description = request.Description;
+            ProductOriginal.Price = request.Price;
+            ProductOriginal.QuantityAvailable = request.QuantityAvailable;
 
-            await _repProduto.AtualizarAsync(produtoOriginal);
+            await _repProduct.UpdateAsync(ProductOriginal);
         }
 
-        public async Task<Guid> CriarAsync(ProdutoInput request)
+        public async Task<Guid> CreateAsync(ProductInput request)
         {
             if (!request.Validate())
-                throw new ArgumentException("Formulário de preenchimento inválido");
+                throw new ArgumentException("Invalid filled form");
 
-            var novoProduto = new Produto(request);
+            var novoProduct = new Product(request);
 
-            await _repProduto.CriarAsync(novoProduto);
+            await _repProduct.CreateAsync(novoProduct);
 
-            return novoProduto.Id;
+            return novoProduct.Id;
         }
 
-        public async Task DeletarAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             if (id == Guid.Empty)
-                throw new ArgumentException("ID inválido");
+                throw new ArgumentException("Invalid ID");
 
-            var produto = await _repProduto.ObterPorIdAsync(id);
-            if (produto == null)
-                throw new HttpRequestException("Produto não encontrado");
+            var Product = await _repProduct.GetByIdAsync(id);
+            if (Product == null)
+                throw new HttpRequestException("Product not found");
 
-            await _repProduto.DeletarAsync(id);
+            await _repProduct.DeleteAsync(id);
         }
 
-        public async Task<Produto> ObterPorIdAsync(Guid id)
+        public async Task<Product> GetByIdAsync(Guid id)
         {
             if (id == Guid.Empty)
-                throw new ArgumentException("ID inválido");
+                throw new ArgumentException("Invalid ID");
 
-            var produto = await _repProduto.ObterPorIdAsync(id);
-            if (produto == null)
-                throw new HttpRequestException("Produto não encontrado");
+            var Product = await _repProduct.GetByIdAsync(id);
+            if (Product == null)
+                throw new HttpRequestException("Product not found");
 
-            return produto;
+            return Product;
         }
 
-        public async Task<IEnumerable<Produto>> ObterAsync(ParametrosBuscaProduto filtro)
+        public async Task<IEnumerable<Product>> GetAsync(SearchfilterProduct filter)
         {
-            if (filtro.PrecoMin > filtro.PrecoMax)
-                throw new ArgumentException("O preço mínimo não pode ser maior que o preço máximo do produto");
+            if (filter.PriceMin > filter.PriceMax)
+                throw new ArgumentException("The minimum price cannot be higher than the maximum price of the product");
 
-            if (filtro.PrecoMax < 0 || filtro.PrecoMin < 0 || filtro.QuantidadeDisponivel < 0)
-                throw new ArgumentException("Os numéricos não podem incluir valores negativos");
+            if (filter.PriceMax < 0 || filter.PriceMin < 0 || filter.QuantityAvailable < 0)
+                throw new ArgumentException("Numeric data cannot include negative values");
 
-            return await _repProduto.ObterAsync(filtro);
+            return await _repProduct.GetAsync(filter);
         }
     }
 }

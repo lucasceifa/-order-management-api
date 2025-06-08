@@ -3,8 +3,8 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using OrderManagement.Dominio;
 using OrderManagement.Dominio.Interfaces;
-using OrderManagement.Repositorio;
-using OrderManagement.Servico;
+using OrderManagement.Repository;
+using OrderManagement.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,19 +18,19 @@ builder.Services.AddDbContext<MainDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MainDB")); 
 });
 
-#region Declarando dependências da classe Cliente
-builder.Services.AddTransient<ClienteService, ClienteService>();
-builder.Services.AddTransient<IClienteRepositorio, ClienteRepositorio>();
+#region Declaring dependencies from Costumer class
+builder.Services.AddTransient<CostumerService, CostumerService>();
+builder.Services.AddTransient<ICostumerRepository, CostumerRepository>();
 #endregion
 
-#region Declarando dependências da classe Produto
-builder.Services.AddTransient<ProdutoService, ProdutoService>();
-builder.Services.AddTransient<IProdutoRepositorio, ProdutoRepositorio>();
+#region Declaring dependencies from Product class
+builder.Services.AddTransient<ProductService, ProductService>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 #endregion
 
 var app = builder.Build();
 
-#region Iniciando tabelas da Database em SQL e injetando dados caso estejam vazios
+#region Starting database tables and inserting some data into it
 using (var scope = app.Services.CreateScope())
 {
     var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();

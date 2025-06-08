@@ -3,45 +3,45 @@ using OrderManagement.Dominio;
 using OrderManagement.Dominio.Interfaces;
 using OrderManagement.Dominio.Utils;
 
-namespace OrderManagement.API.Teste.Services.RepositoriosMock
+namespace OrderManagement.API.Teste.Services.RepositorysMock
 {
-    public class ProdutoRepositorioMock : IProdutoRepositorio
+    public class ProductRepositoryMock : IProductRepository
     {
-        private List<Produto> _dados;
+        private List<Product> _dados;
 
-        public ProdutoRepositorioMock()
+        public ProductRepositoryMock()
         {
             if (_dados == null)
-                _dados = new List<Produto>();
+                _dados = new List<Product>();
         }
 
-        public async Task AtualizarAsync(Produto produto)
+        public async Task UpdateAsync(Product Product)
         {
-            var index = _dados.FindIndex(p => p.Id == produto.Id);
+            var index = _dados.FindIndex(p => p.Id == Product.Id);
             if (index >= 0)
-                _dados[index] = produto;
+                _dados[index] = Product;
         }
 
-        public async Task CriarAsync(Produto produto)
+        public async Task CreateAsync(Product Product)
         {
-            _dados.Add(produto);
+            _dados.Add(Product);
         }
 
-        public async Task DeletarAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             _dados = _dados.Where(p => p.Id != id).ToList();
         }
 
-        public async Task<IEnumerable<Produto>> ObterAsync(ParametrosBuscaProduto filtro)
+        public async Task<IEnumerable<Product>> GetAsync(SearchfilterProduct filter)
         {
             return _dados.Where(p =>
-                (string.IsNullOrEmpty(filtro.Nome) || p.Nome.ToLower().Contains(filtro.Nome.ToLower())) &&
-                (!filtro.PrecoMin.HasValue || p.Preco >= filtro.PrecoMin.Value) &&
-                (!filtro.PrecoMax.HasValue || p.Preco <= filtro.PrecoMax.Value) &&
-                (!filtro.QuantidadeDisponivel.HasValue || p.QuantidadeDisponivel == filtro.QuantidadeDisponivel.Value));
+                (string.IsNullOrEmpty(filter.Name) || p.Name.ToLower().Contains(filter.Name.ToLower())) &&
+                (!filter.PriceMin.HasValue || p.Price >= filter.PriceMin.Value) &&
+                (!filter.PriceMax.HasValue || p.Price <= filter.PriceMax.Value) &&
+                (!filter.QuantityAvailable.HasValue || p.QuantityAvailable == filter.QuantityAvailable.Value));
         }
 
-        public async Task<Produto?> ObterPorIdAsync(Guid id)
+        public async Task<Product?> GetByIdAsync(Guid id)
         {
             return _dados.FirstOrDefault(p => p.Id == id);
         }

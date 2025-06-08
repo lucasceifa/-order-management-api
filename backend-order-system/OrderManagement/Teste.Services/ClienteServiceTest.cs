@@ -1,328 +1,322 @@
-﻿using OrderManagement.API.Teste.Services.RepositoriosMock;
+﻿using OrderManagement.API.Teste.Services.RepositorysMock;
 using OrderManagement.Dominio;
 using OrderManagement.Dominio.Utils;
-using OrderManagement.Repositorio;
-using OrderManagement.Servico;
+using OrderManagement.Repository;
+using OrderManagement.Service;
 using System.Data;
 using Xunit;
 using Xunit.Sdk;
 
-namespace OrderManagement.API.Testes.Service
+namespace OrderManagement.API.Tests.Service
 {
-
-    [Collection("Teste do serviço de clientes")]
-    public class ClienteServiceTest
+    [Collection("Costumer Service Test")]
+    public class CostumerServiceTest
     {
-        public ClienteService ObterService()
+        public CostumerService GetService()
         {
-            var clienteRepositorio = new ClienteRepositorioMock();
-
-            return new ClienteService(clienteRepositorio);
+            var costumerRepository = new CostumerRepositoryMock();
+            return new CostumerService(costumerRepository);
         }
 
-        public static class Dados
+        public static class TestData
         {
-            public static IEnumerable<object[]> ClientesValidos =>
+            public static IEnumerable<object[]> ValidCostumers =>
                 new List<object[]>
                 {
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "Ana Souza",
+                            Name = "Ana Souza",
                             Email = "ana.souza@email.com",
-                            Telefone = "11911112222"
+                            Cellphone = "11911112222"
                         }
                     },
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "Carlos Mendes",
+                            Name = "Carlos Mendes",
                             Email = "carlos.mendes@email.com",
-                            Telefone = "11922223333"
+                            Cellphone = "11922223333"
                         }
                     },
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "Fernanda Lima",
+                            Name = "Fernanda Lima",
                             Email = "fernanda.lima@email.com",
-                            Telefone = "11933334444"
+                            Cellphone = "11933334444"
                         }
                     },
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "João Pedro",
+                            Name = "João Pedro",
                             Email = "joao.pedro@email.com",
-                            Telefone = "11944445555"
+                            Cellphone = "11944445555"
                         }
                     },
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "Mariana Alves",
+                            Name = "Mariana Alves",
                             Email = "mariana.alves@email.com",
-                            Telefone = "11955556666"
+                            Cellphone = "11955556666"
                         }
                     }
                 };
 
-            public static IEnumerable<object[]> ClientesInvalidosEmailRepetido =>
+            public static IEnumerable<object[]> RepeatedEmailCostumers =>
                 new List<object[]>
                 {
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "Lucas Trindade",
-                            Email = "repetido@email.com",
-                            Telefone = "11911112222"
+                            Name = "Lucas Trindade",
+                            Email = "repeated@email.com",
+                            Cellphone = "11911112222"
                         }
                     },
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "Carlos Trindade",
-                            Email = "repetido@email.com",
-                            Telefone = "11922223333"
+                            Name = "Carlos Trindade",
+                            Email = "repeated@email.com",
+                            Cellphone = "11922223333"
                         }
                     }
-                        };
+                };
 
-          public static IEnumerable<object[]> ClientesInvalidos =>
+            public static IEnumerable<object[]> InvalidCostumers =>
                 new List<object[]>
                 {
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "",
-                            Email = "teste1@email.com",
-                            Telefone = "11911112222"
+                            Name = "",
+                            Email = "test1@email.com",
+                            Cellphone = "11911112222"
                         }
                     },
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "A",
-                            Email = "teste2@email.com",
-                            Telefone = "11911112222"
+                            Name = "A",
+                            Email = "test2@email.com",
+                            Cellphone = "11911112222"
                         }
                     },
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "Lucas",
-                            Email = "teste3@email.com",
-                            Telefone = "11911112222"
+                            Name = "Lucas",
+                            Email = "test3@email.com",
+                            Cellphone = "11911112222"
                         }
                     },
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "Lucas Trindade",
+                            Name = "Lucas Trindade",
                             Email = "",
-                            Telefone = "11911112222"
+                            Cellphone = "11911112222"
                         }
                     },
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "Lucas Trindade",
+                            Name = "Lucas Trindade",
                             Email = "a@b",
-                            Telefone = "11911112222"
+                            Cellphone = "11911112222"
                         }
                     },
                     new object[]
                     {
-                        new ClienteInput
+                        new CostumerInput
                         {
-                            Nome = "Lucas Trindade",
-                            Email = "emailsemarroba.com",
-                            Telefone = "11911112222"
+                            Name = "Lucas Trindade",
+                            Email = "emailwithoutat.com",
+                            Cellphone = "11911112222"
                         }
                     }
                 };
         }
 
-        #region Metodos de validação com resultado positivo
-        [Theory(DisplayName = "Criando clientes válidos")]
-        [MemberData(nameof(Dados.ClientesValidos), MemberType = typeof(Dados))]
-        public async Task CriarClientesValidos(ClienteInput input)
+        #region Positive Validation Methods
+
+        [Theory(DisplayName = "Creating valid Costumers")]
+        [MemberData(nameof(TestData.ValidCostumers), MemberType = typeof(TestData))]
+        public async Task CreateValidCostumers(CostumerInput input)
         {
-            var service = ObterService();
-            await service.CriarAsync(input);
+            var service = GetService();
+            await service.CreateAsync(input);
 
-            var clientes = await service.ObterAsync(new ParametrosBuscaCliente { });
+            var costumers = await service.GetAsync(new SearchfilterCostumer { });
 
-            Assert.True(clientes.Any(c => c.Nome == input.Nome && c.Telefone == input.Telefone && c.Email == input.Email));
+            Assert.True(costumers.Any(c => c.Name == input.Name && c.Cellphone == input.Cellphone && c.Email == input.Email));
         }
 
-        [Theory(DisplayName = "Criando cliente e dando GetPorId")]
-        [MemberData(nameof(Dados.ClientesValidos), MemberType = typeof(Dados))]
-        public async Task UsandoGetByID(ClienteInput input)
+        [Theory(DisplayName = "Creating and retrieving Costumer by ID")]
+        [MemberData(nameof(TestData.ValidCostumers), MemberType = typeof(TestData))]
+        public async Task GetByIdCostumer(CostumerInput input)
         {
-            var service = ObterService();
-            var response = await service.CriarAsync(input);
+            var service = GetService();
+            var response = await service.CreateAsync(input);
 
-            var clienteGetById = await service.ObterPorIdAsync(response);
+            var costumer = await service.GetByIdAsync(response);
 
-            Assert.True(clienteGetById != null && clienteGetById.Id == response && clienteGetById.Nome == input.Nome && clienteGetById.Telefone == input.Telefone && clienteGetById.Email == input.Email);
+            Assert.True(costumer != null && costumer.Id == response && costumer.Name == input.Name && costumer.Cellphone == input.Cellphone && costumer.Email == input.Email);
         }
 
-        [Theory(DisplayName = "Criando cliente e excluindo")]
-        [MemberData(nameof(Dados.ClientesValidos), MemberType = typeof(Dados))]
-        public async Task UsandoDeleteByID(ClienteInput input)
+        [Theory(DisplayName = "Creating and deleting Costumer")]
+        [MemberData(nameof(TestData.ValidCostumers), MemberType = typeof(TestData))]
+        public async Task DeleteCostumerById(CostumerInput input)
         {
-            var service = ObterService();
-            var response = await service.CriarAsync(input);
+            var service = GetService();
+            var response = await service.CreateAsync(input);
 
-            var cliente = await service.ObterPorIdAsync(response);
+            var costumer = await service.GetByIdAsync(response);
+            await service.DeleteAsync(response);
+            var costumers = await service.GetAsync(new SearchfilterCostumer { });
 
-            await service.DeletarAsync(response);
-
-            var clientes = await service.ObterAsync(new ParametrosBuscaCliente { });
-
-            Assert.True(cliente != null && clientes.Count() == 0);
+            Assert.True(costumer != null && costumers.Count() == 0);
         }
 
-        [Theory(DisplayName = "Criando cliente e atualizando")]
-        [MemberData(nameof(Dados.ClientesValidos), MemberType = typeof(Dados))]
-        public async Task UsandoUpdateByID(ClienteInput input)
+        [Theory(DisplayName = "Creating and updating Costumer")]
+        [MemberData(nameof(TestData.ValidCostumers), MemberType = typeof(TestData))]
+        public async Task UpdateCostumerById(CostumerInput input)
         {
-            var service = ObterService();
-            var inputPadrao = new ClienteInput
+            var service = GetService();
+            var baseInput = new CostumerInput
             {
-                Nome = "Teste para atualizar",
-                Email = "teste@email.com",
-                Telefone = "11111111"
+                Name = "Test Update",
+                Email = "test@email.com",
+                Cellphone = "11111111"
             };
 
-            var response = await service.CriarAsync(inputPadrao);
-            await service.AtualizarPorIdAsync(response, input);
+            var response = await service.CreateAsync(baseInput);
+            await service.UpdateByIdAsync(response, input);
 
-            var cliente = await service.ObterPorIdAsync(response);
+            var costumer = await service.GetByIdAsync(response);
 
-            Assert.True(cliente != null && cliente.Nome == input.Nome && cliente.Telefone == input.Telefone && cliente.Email == input.Email);
+            Assert.True(costumer != null && costumer.Name == input.Name && costumer.Cellphone == input.Cellphone && costumer.Email == input.Email);
         }
+
         #endregion
 
-        #region Metodos de validação com retorno de excessão
-        [Theory(DisplayName = "Criando clientes inválidos do método VALIDATE")]
-        [MemberData(nameof(Dados.ClientesInvalidos), MemberType = typeof(Dados))]
-        public async Task CriarClientesInvalidos(ClienteInput input)
-        {
-            var service = ObterService();
+        #region Exception Validation Methods
 
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.CriarAsync(input));
+        [Theory(DisplayName = "Creating invalid Costumers from VALIDATE method")]
+        [MemberData(nameof(TestData.InvalidCostumers), MemberType = typeof(TestData))]
+        public async Task CreateInvalidCostumers(CostumerInput input)
+        {
+            var service = GetService();
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.CreateAsync(input));
         }
 
-        [Theory(DisplayName = "Atualizando clientes inválidos do método VALIDATE")]
-        [MemberData(nameof(Dados.ClientesInvalidos), MemberType = typeof(Dados))]
-        public async Task AtualizandoClientesInvalidos(ClienteInput input)
+        [Theory(DisplayName = "Updating invalid Costumers from VALIDATE method")]
+        [MemberData(nameof(TestData.InvalidCostumers), MemberType = typeof(TestData))]
+        public async Task UpdateInvalidCostumers(CostumerInput input)
         {
-            var service = ObterService();
+            var service = GetService();
 
-            var inputPadrao = new ClienteInput
+            var baseInput = new CostumerInput
             {
-                Nome = "Teste para atualizar",
-                Email = "teste@email.com",
-                Telefone = "11111111"
+                Name = "Test Update",
+                Email = "test@email.com",
+                Cellphone = "11111111"
             };
-            var response = await service.CriarAsync(inputPadrao);
 
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.AtualizarPorIdAsync(response, input));
+            var response = await service.CreateAsync(baseInput);
+
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.UpdateByIdAsync(response, input));
         }
 
-        [Theory(DisplayName = "Atualizando clientes com Id inválido")]
-        [MemberData(nameof(Dados.ClientesValidos), MemberType = typeof(Dados))]
-        public async Task AtualizandoClientesComId(ClienteInput input)
+        [Theory(DisplayName = "Updating Costumer with invalid ID")]
+        [MemberData(nameof(TestData.ValidCostumers), MemberType = typeof(TestData))]
+        public async Task UpdateCostumerWithInvalidId(CostumerInput input)
         {
-            var service = ObterService();
-
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await service.AtualizarPorIdAsync(Guid.NewGuid(), input));
+            var service = GetService();
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await service.UpdateByIdAsync(Guid.NewGuid(), input));
         }
 
-        [Fact(DisplayName = "Criando clientes com email duplicado")]
-        public async Task CriarClientesInvalidosComEmailDuplicado()
+        [Fact(DisplayName = "Creating Costumer with duplicated email")]
+        public async Task CreateCostumerWithDuplicatedEmail()
         {
-            var service = ObterService();
+            var service = GetService();
 
-            var inputs = Dados.ClientesInvalidosEmailRepetido.Select(e => e.First() as ClienteInput).ToList();
-            await service.CriarAsync(inputs.First());
+            var inputs = TestData.RepeatedEmailCostumers.Select(e => e.First() as CostumerInput).ToList();
+            await service.CreateAsync(inputs.First());
 
-            await Assert.ThrowsAsync<DuplicateNameException>(async () => await service.CriarAsync(inputs.Last()));
+            await Assert.ThrowsAsync<DuplicateNameException>(async () => await service.CreateAsync(inputs.Last()));
         }
 
-        [Fact(DisplayName = "Atualizando clientes com email duplicado")]
-        public async Task AtualizandoClientesInvalidosComEmailDuplicado()
+        [Fact(DisplayName = "Updating Costumer with duplicated email")]
+        public async Task UpdateCostumerWithDuplicatedEmail()
         {
-            var service = ObterService();
+            var service = GetService();
 
-            var inputs = Dados.ClientesInvalidosEmailRepetido.Select(e => e.First() as ClienteInput).ToList();
-            await service.CriarAsync(inputs.First());
+            var inputs = TestData.RepeatedEmailCostumers.Select(e => e.First() as CostumerInput).ToList();
+            await service.CreateAsync(inputs.First());
 
-            var inputPadrao = new ClienteInput
+            var baseInput = new CostumerInput
             {
-                Nome = "Teste para atualizar",
-                Email = "teste@email.com",
-                Telefone = "11111111"
+                Name = "Test Update",
+                Email = "test@email.com",
+                Cellphone = "11111111"
             };
-            var response = await service.CriarAsync(inputPadrao);
 
+            var response = await service.CreateAsync(baseInput);
 
-            await Assert.ThrowsAsync<DuplicateNameException>(async () => await service.AtualizarPorIdAsync(response, inputs.Last()));
+            await Assert.ThrowsAsync<DuplicateNameException>(async () => await service.UpdateByIdAsync(response, inputs.Last()));
         }
 
-        [Fact(DisplayName = "Deletando clientes com Id vazio")]
-        public async Task DeletandoClientesComIdVazio()
+        [Fact(DisplayName = "Deleting Costumer with empty ID")]
+        public async Task DeleteCostumerWithEmptyId()
         {
-            var service = ObterService();
-
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.DeletarAsync(Guid.Empty));
+            var service = GetService();
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.DeleteAsync(Guid.Empty));
         }
 
-        [Fact(DisplayName = "Deletando clientes com Id inválido aleatório")]
-        public async Task DeletandoClientesComIdAleatorio()
+        [Fact(DisplayName = "Deleting Costumer with random ID")]
+        public async Task DeleteCostumerWithRandomId()
         {
-            var service = ObterService();
-
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await service.DeletarAsync(Guid.NewGuid()));
+            var service = GetService();
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await service.DeleteAsync(Guid.NewGuid()));
         }
 
-        [Fact(DisplayName = "Obter por ID clientes com Id vazio")]
-        public async Task GetByIdClientesComIdVazio()
+        [Fact(DisplayName = "Getting Costumer by empty ID")]
+        public async Task GetCostumerByEmptyId()
         {
-            var service = ObterService();
-
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.ObterPorIdAsync(Guid.Empty));
+            var service = GetService();
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetByIdAsync(Guid.Empty));
         }
 
-        [Fact(DisplayName = "Obter por ID clientes com Id aleatório")]
-        public async Task GetByIdClientesComIdAleatorio()
+        [Fact(DisplayName = "Getting Costumer by random ID")]
+        public async Task GetCostumerByRandomId()
         {
-            var service = ObterService();
-
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await service.ObterPorIdAsync(Guid.NewGuid()));
+            var service = GetService();
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await service.GetByIdAsync(Guid.NewGuid()));
         }
 
-        [Fact(DisplayName = "Obter clientes com filtro inválido")]
-        public async Task GetClientesComFiltroInvalido()
+        [Fact(DisplayName = "Getting Costumers with invalid filter")]
+        public async Task GetCostumersWithInvalidFilter()
         {
-            var service = ObterService();
-
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.ObterAsync(new ParametrosBuscaCliente() { DataDeCadastro = DateTime.Now.AddDays(10) }));
+            var service = GetService();
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetAsync(new SearchfilterCostumer() { CreationDate = DateTime.Now.AddDays(10) }));
         }
+
         #endregion
     }
 }

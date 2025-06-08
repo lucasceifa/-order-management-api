@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace OrderManagement.Dominio.Utils
 {
-    public class ParametrosBuscaCliente
+    public class SearchfilterCostumer
     {
-        public string? Nome { get; set; }
+        public string? Name { get; set; }
         public string? Email { get; set; }
-        public DateTime? DataDeCadastro { get; set; }
+        public DateTime? CreationDate { get; set; }
     }
 }
