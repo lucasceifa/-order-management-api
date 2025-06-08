@@ -25,8 +25,6 @@ namespace OrderManagement.API.Controllers
         public async Task<IActionResult> GetProducts([FromQuery] SearchfilterProduct filter)
         {
             var Products = await _servProduct.GetAsync(filter);
-            if (Products.IsNullOrEmpty())
-                return NotFound();
 
             return Ok(Products);
         }

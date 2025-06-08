@@ -23,8 +23,6 @@ namespace OrderManagement.API.Controllers
         public async Task<IActionResult> GetCostumers([FromQuery] SearchfilterCostumer filter)
         {
             var Costumers = await _servCostumer.GetAsync(filter);
-            if (Costumers.IsNullOrEmpty())
-                return NotFound();
 
             return Ok(Costumers);
         }

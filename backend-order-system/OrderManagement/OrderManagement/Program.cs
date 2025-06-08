@@ -5,6 +5,7 @@ using OrderManagement.Dominio;
 using OrderManagement.Dominio.Interfaces;
 using OrderManagement.Repository;
 using OrderManagement.Service;
+using OrderXProductManagement.Dominio.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,12 @@ builder.Services.AddTransient<ICostumerRepository, CostumerRepository>();
 #region Declaring dependencies from Product class
 builder.Services.AddTransient<ProductService, ProductService>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
+#endregion
+
+#region Declaring dependencies from Order and OrderXProduct class
+builder.Services.AddTransient<OrderXProductService, OrderXProductService>();
+builder.Services.AddTransient<IOrderXProductRepository, OrderXProductRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 #endregion
 
 var app = builder.Build();

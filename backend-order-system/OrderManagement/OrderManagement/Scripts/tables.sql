@@ -21,16 +21,27 @@ BEGIN
     )
 END
 
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='OperationCostumerXProduct' AND xtype='U')
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Order' AND xtype='U')
 BEGIN
-    CREATE TABLE OperationCostumerXProduct (
+    CREATE TABLE [Order] (
+        Id UNIQUEIDENTIFIER PRIMARY KEY,
+        CostumerId UNIQUEIDENTIFIER NOT NULL,
+        Status INT NOT NULL,
+        CreationDate DATETIME NOT NULL,
+        CancellationDate DATETIME NULL
+    )
+END
+
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='OrderXProduct' AND xtype='U')
+BEGIN
+    CREATE TABLE OrderXProduct (
         Id UNIQUEIDENTIFIER PRIMARY KEY,
         CreationDate DATETIME NOT NULL,
         ProductId UNIQUEIDENTIFIER NOT NULL,
-        CostumerId UNIQUEIDENTIFIER NOT NULL,
+        OrderId UNIQUEIDENTIFIER NOT NULL,
         Status INT NOT NULL,
         PurchasedQuantity INT NOT NULL,
         FOREIGN KEY (ProductId) REFERENCES Product(Id),
-        FOREIGN KEY (CostumerId) REFERENCES Costumer(Id)
+        FOREIGN KEY (OrderId) REFERENCES [Order](Id)
     )
 END
