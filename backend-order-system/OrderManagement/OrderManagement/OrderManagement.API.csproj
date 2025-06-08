@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OrderManagement.Domain\OrderManagement.Domain.csproj" />
+    <ProjectReference Include="..\OrderManagement.Repositorio\OrderManagement.Repository.csproj" />
     <ProjectReference Include="..\OrderManagement.Servico\OrderManagement.Service.csproj" />
   </ItemGroup>
 
