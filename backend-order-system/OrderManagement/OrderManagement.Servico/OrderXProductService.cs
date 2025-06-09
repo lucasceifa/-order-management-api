@@ -199,6 +199,15 @@ namespace OrderManagement.Service
             return order;
         }
 
+        public async Task<List<ProductsOrderResponse>> GetProductsByOrderIdAsync(Guid orderId)
+        {
+            var order = await _repOrder.GetByIdAsync(orderId);
+            var orderXProductItems = await _repOrderXProduct.GetByOrderIdAsync(orderId);
+            var products = await _servProduct.GetAsync(new SearchfilterProduct { });
+
+            return orderXProductItems.Select(e => new ProductsOrderResponse(e, products.FirstOrDefault(p => p.Id == e.ProductId))).ToList();
+        }
+
         public async Task<IEnumerable<OrderResponse>> GetAsync()
         {
             var orders = await _repOrder.GetAsync();

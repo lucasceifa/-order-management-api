@@ -46,6 +46,13 @@ namespace OrderManagement.Repository
             return await connection.QueryAsync<OrderXProduct>(query);
         }
 
+        public async Task<IEnumerable<OrderXProduct>> GetByOrderIdAsync(Guid orderId)
+        {
+            var query = "SELECT * FROM OrderXProduct WHERE OrderId = @OrderId";
+            var connection = CreateConnection();
+            return await connection.QueryAsync<OrderXProduct>(query, new { OrderId = orderId });
+        }
+
         public async Task UpdateAsync(OrderXProduct orderXProduct)
         {
             var query = @"

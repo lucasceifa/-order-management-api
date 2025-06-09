@@ -36,6 +36,16 @@ namespace OrderManagement.API.Controllers
             return Ok(order);
         }
 
+        [HttpGet("{id}/Products")]
+        public async Task<IActionResult> GetProductsByOrderId(Guid id)
+        {
+            var products = await _servOrderXProduct.GetProductsByOrderIdAsync(id);
+            if (products == null)
+                return NotFound();
+
+            return Ok(products);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] OrderXProductInput request)
         {

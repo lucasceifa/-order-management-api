@@ -36,10 +36,11 @@ const apiService = (() => {
     const cancelOrder = (id) => makeRequest({ url: `${BASE_URL}/orderxproduct/cancel/${id}`, method: 'PUT', successMessage: 'Order canceled successfully!' });
     const reopenOrder = (id) => makeRequest({ url: `${BASE_URL}/orderxproduct/reopen/${id}`, method: 'PUT', successMessage: 'Order reactivated successfully!' });
     const deleteOrder = (id) => makeRequest({ url: `${BASE_URL}/orderxproduct/${id}`, method: 'DELETE', successMessage: 'Order deleted successfully!' });
+    const getOrderProducts = (orderId) => makeRequest({ url: `${BASE_URL}/orderxproduct/${orderId}/products`, method: 'GET' });
 
     return {
         getCustomers, getCustomerById, createCustomer, updateCustomer, deleteCustomer,
         getProducts, getProductById, createProduct, updateProduct, deleteProduct,
-        getOrders, createOrder, cancelOrder, reopenOrder, deleteOrder
+        getOrders, createOrder, cancelOrder, reopenOrder, deleteOrder, getOrderProducts
     };
 })();

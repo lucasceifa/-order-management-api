@@ -189,7 +189,7 @@ $(document).ready(function () {
             $('#product-id').val(product.id);
             $('#product-name').val(product.name);
             $('#product-description').val(product.description);
-            $('#product-price').val(product.price.toString().replace('.', ','));
+            $('#product-price').val(product.price);
             $('#product-quantity').val(product.quantityAvailable);
             $('#product-modal-title').text('Edit Product');
             productModal.show();
@@ -270,9 +270,14 @@ $(document).ready(function () {
                             <i class="bi bi-trash"></i>
                         </button>`;
 
+                    const detailsBtn = `
+                        <button class="btn btn-sm btn-outline-info btn-order-details" data-bs-toggle="tooltip" title="Expand details">
+                            <i class="bi bi-eye"></i>
+                        </button>`;
+
                     const statusActions = order.cancellationDate
-                        ? reopenBtn + deleteBtn
-                        : cancelBtn + deleteBtn;
+                        ? `${detailsBtn}${reopenBtn}${deleteBtn}`
+                        : `${detailsBtn}${cancelBtn}${deleteBtn}`;
 
                     $('#orders-table-body').append(`
                         <tr data-id="${order.id}">
@@ -411,4 +416,23 @@ $(document).ready(function () {
     $('#filter-order-status').on('input', function () {
         loadOrders();
     });
+
+    $('#orders-table-body').on('click', '.btn-order-details', function () {
+    const id = $(this).closest('tr').data('id');
+    apiService.getOrderProducts(id).done(products => {
+        const tbody = $('#order-details-body');
+        tbody.empty();
+        products.forEach(p => {
+            tbody.append(`
+                <tr>
+                    <td>${p.productName}</td>
+                    <td>${p.quantity}</td>
+                    <td>${formatCurrency(p.value)}</td>
+                    <td>${formatCurrency(p.totalValue)}</td>
+                </tr>
+            `);
+        });
+        new bootstrap.Modal(document.getElementById('order-details-modal')).show();
+    });
+});
 });
