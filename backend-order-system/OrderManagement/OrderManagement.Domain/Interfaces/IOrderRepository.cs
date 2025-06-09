@@ -9,7 +9,7 @@ namespace OrderManagement.Dominio.Interfaces
         public Task CreateAsync(Order Order);
         public Task<Order> GetByIdAsync(Guid id);
         public Task<IEnumerable<Order>> GetAsync();
-        public Task UpdateStatusAsync(Guid id, IOrderStatus status);
+        public Task UpdateStatusAsync(Guid id, IOrderStatus status, DateTime? cancellationDate);
         public Task DeleteAsync(Guid id);
     }
 }

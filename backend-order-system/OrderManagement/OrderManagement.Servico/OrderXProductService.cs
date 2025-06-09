@@ -10,6 +10,7 @@ using OrderManagement.Dominio.Interfaces;
 using OrderManagement.Dominio.Utils;
 using OrderXProductManagement.Dominio.Interfaces;
 using OrderManagement.Dominio.Requests;
+using OrderManagement.Domain.Responses;
 
 namespace OrderManagement.Service
 {
@@ -147,7 +148,8 @@ namespace OrderManagement.Service
                 throw new HttpRequestException("Order not found");
 
             order.Status = IOrderStatus.Canceled;
-            await _repOrder.UpdateStatusAsync(order.Id, order.Status);
+            order.CancellationDate = DateTime.Now;
+            await _repOrder.UpdateStatusAsync(order.Id, order.Status, order.CancellationDate);
         }
 
         public async Task ReopenAsync(Guid orderId)
@@ -160,7 +162,8 @@ namespace OrderManagement.Service
                 throw new HttpRequestException("Order not found");
 
             order.Status = IOrderStatus.Concluded;
-            await _repOrder.UpdateStatusAsync(order.Id, order.Status);
+            order.CancellationDate = null;
+            await _repOrder.UpdateStatusAsync(order.Id, order.Status, order.CancellationDate);
         }
 
         public async Task DeleteAsync(Guid orderId)
@@ -196,9 +199,13 @@ namespace OrderManagement.Service
             return order;
         }
 
-        public async Task<IEnumerable<Order>> GetAsync()
+        public async Task<IEnumerable<OrderResponse>> GetAsync()
         {
-            return await _repOrder.GetAsync();
+            var orders = await _repOrder.GetAsync();
+            var customers = await _servCustomer.GetAsync(new SearchfilterCustomer { });
+            var orderXProductItems = await _repOrderXProduct.GetAsync();
+
+            return orders.Select(e => new OrderResponse(e, customers.FirstOrDefault(c => c.Id == e.CustomerId), orderXProductItems.Where(oXp => oXp.OrderId == e.Id).ToList()));
         }
     }
 }

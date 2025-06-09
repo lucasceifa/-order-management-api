@@ -18,5 +18,14 @@ namespace OrderManagement.Domain
         public IOrderStatus Status { get; set; }
 
         public DateTime? CancellationDate { get; set; }
+
+        public string GetStatus()
+        {
+            if (Status == IOrderStatus.Canceled) return "Canceled";
+
+            if (Status == IOrderStatus.Concluded) return "Concluded";
+
+            return "";
+        }
     }
 }

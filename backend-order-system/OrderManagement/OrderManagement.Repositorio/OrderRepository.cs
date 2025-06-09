@@ -53,15 +53,21 @@ namespace OrderManagement.Repository
             return await connection.QueryAsync<Order>(query);
         }
 
-        public async Task UpdateStatusAsync(Guid id, IOrderStatus status)
+        public async Task UpdateStatusAsync(Guid id, IOrderStatus status, DateTime? cancellationDate)
         {
-            var query = "UPDATE [Order] SET Status = @Status WHERE Id = @Id";
+            var query = @"
+                UPDATE [Order]
+                SET 
+                    Status = @Status,
+                    CancellationDate = @CancellationDate
+                WHERE Id = @Id";
             var connection = CreateConnection();
 
             await connection.ExecuteAsync(query, new
             {
                 Id = id,
-                Status = (int)status
+                Status = (int)status,
+                CancellationDate = cancellationDate
             });
         }
 
