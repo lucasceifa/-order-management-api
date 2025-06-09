@@ -1,6 +1,6 @@
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Costumer' AND xtype='U')
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Customer' AND xtype='U')
 BEGIN
-    CREATE TABLE Costumer (
+    CREATE TABLE Customer (
         Id UNIQUEIDENTIFIER PRIMARY KEY,
         CreationDate DATETIME NOT NULL,
         Name NVARCHAR(100) NOT NULL,
@@ -25,7 +25,7 @@ IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Order' AND xtype='U')
 BEGIN
     CREATE TABLE [Order] (
         Id UNIQUEIDENTIFIER PRIMARY KEY,
-        CostumerId UNIQUEIDENTIFIER NOT NULL,
+        CustomerId UNIQUEIDENTIFIER NOT NULL,
         Status INT NOT NULL,
         CreationDate DATETIME NOT NULL,
         CancellationDate DATETIME NULL
@@ -39,9 +39,8 @@ BEGIN
         CreationDate DATETIME NOT NULL,
         ProductId UNIQUEIDENTIFIER NOT NULL,
         OrderId UNIQUEIDENTIFIER NOT NULL,
-        Status INT NOT NULL,
-        PurchasedQuantity INT NOT NULL,
-        FOREIGN KEY (ProductId) REFERENCES Product(Id),
+        QuantityPurchased INT NOT NULL,
+        ProductValue FLOAT NOT NULL,
         FOREIGN KEY (OrderId) REFERENCES [Order](Id)
     )
 END

@@ -12,7 +12,7 @@ namespace OrderManagement.Domain
     public class Order : Entity
     {
         [Required]
-        public Guid CostumerId { get; set; }
+        public Guid CustomerId { get; set; }
 
         [Required]
         public IOrderStatus Status { get; set; }

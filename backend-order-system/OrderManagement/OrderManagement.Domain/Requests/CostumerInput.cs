@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace OrderManagement.Dominio
 {
-    public class CostumerInput
+    public class CustomerInput
     {
         public string Name { get; set; }
 

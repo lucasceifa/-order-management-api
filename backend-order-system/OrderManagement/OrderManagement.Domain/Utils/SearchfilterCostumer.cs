@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrderManagement.Dominio.Utils
 {
-    public class SearchfilterCostumer
+    public class SearchfilterCustomer
     {
         public string? Name { get; set; }
         public string? Email { get; set; }

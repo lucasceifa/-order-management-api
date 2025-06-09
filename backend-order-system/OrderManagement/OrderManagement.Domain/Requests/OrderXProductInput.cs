@@ -8,7 +8,7 @@ namespace OrderManagement.Domain.Requests
 {
     public class OrderXProductInput
     {
-        public Guid CostumerId { get; set; }
+        public Guid CustomerId { get; set; }
         public List<ProductXQuantities> ProductXQuantities { get; set; }
     }
 

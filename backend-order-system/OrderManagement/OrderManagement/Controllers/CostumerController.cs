@@ -10,53 +10,53 @@ namespace OrderManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CostumerController : ControllerBase
+    public class CustomerController : ControllerBase
     {
-        private readonly CostumerService _servCostumer;
+        private readonly CustomerService _servCustomer;
 
-        public CostumerController(CostumerService servCostumer)
+        public CustomerController(CustomerService servCustomer)
         {
-            _servCostumer = servCostumer;
+            _servCustomer = servCustomer;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCostumers([FromQuery] SearchfilterCostumer filter)
+        public async Task<IActionResult> GetCustomers([FromQuery] SearchfilterCustomer filter)
         {
-            var Costumers = await _servCostumer.GetAsync(filter);
+            var Customers = await _servCustomer.GetAsync(filter);
 
-            return Ok(Costumers);
+            return Ok(Customers);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCostumerById(Guid id)
+        public async Task<IActionResult> GetCustomerById(Guid id)
         {
-            var Costumer = await _servCostumer.GetByIdAsync(id);
-            if (Costumer == null)
+            var Customer = await _servCustomer.GetByIdAsync(id);
+            if (Customer == null)
                 return NotFound();
 
-            return Ok(Costumer);
+            return Ok(Customer);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CostumerInput request)
+        public async Task<IActionResult> Post([FromBody] CustomerInput request)
         {
-            await _servCostumer.CreateAsync(request);
+            await _servCustomer.CreateAsync(request);
 
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, [FromBody] CostumerInput request)
+        public async Task<IActionResult> Put(Guid id, [FromBody] CustomerInput request)
         {
-            await _servCostumer.UpdateByIdAsync(id, request);
+            await _servCustomer.UpdateByIdAsync(id, request);
 
             return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCostumerById(Guid id)
+        public async Task<IActionResult> DeleteCustomerById(Guid id)
         {
-            await _servCostumer.DeleteAsync(id);
+            await _servCustomer.DeleteAsync(id);
 
             return Ok();
         }

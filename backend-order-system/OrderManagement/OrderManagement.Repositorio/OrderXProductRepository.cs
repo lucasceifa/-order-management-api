@@ -1,7 +1,10 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using Dapper;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
+using OrderManagement.Domain;
 using OrderManagement.Dominio;
 using OrderXProductManagement.Dominio.Interfaces;
 
@@ -24,7 +27,7 @@ namespace OrderManagement.Repository
             var query = @"
                 INSERT INTO OrderXProduct (Id, CreationDate, ProductId, OrderId, QuantityPurchased, ProductValue)
                 VALUES (@Id, @CreationDate, @ProductId, @OrderId, @QuantityPurchased, @ProductValue)";
-
+            
             var connection = CreateConnection();
             await connection.ExecuteAsync(query, orderXProduct);
         }

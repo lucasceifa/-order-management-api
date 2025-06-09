@@ -9,6 +9,7 @@ using OrderManagement.Dominio.Enums;
 using OrderManagement.Dominio.Interfaces;
 using OrderManagement.Dominio.Utils;
 using OrderXProductManagement.Dominio.Interfaces;
+using OrderManagement.Dominio.Requests;
 
 namespace OrderManagement.Service
 {
@@ -16,18 +17,18 @@ namespace OrderManagement.Service
     {
         private readonly IOrderRepository _repOrder;
         private readonly IOrderXProductRepository _repOrderXProduct;
-        private readonly CostumerService _servCostumer;
+        private readonly CustomerService _servCustomer;
         private readonly ProductService _servProduct;
 
         public OrderXProductService(
             IOrderRepository orderRepository,
             IOrderXProductRepository orderXProductRepository,
-            CostumerService costumerRepository,
+            CustomerService CustomerRepository,
             ProductService productRepository)
         {
             _repOrder = orderRepository;
             _repOrderXProduct = orderXProductRepository;
-            _servCostumer = costumerRepository;
+            _servCustomer = CustomerRepository;
             _servProduct = productRepository;
         }
 
@@ -36,15 +37,15 @@ namespace OrderManagement.Service
             if (input == null || input.ProductXQuantities == null || !input.ProductXQuantities.Any())
                 throw new ArgumentException("Invalid input data");
 
-            var costumer = await _servCostumer.GetByIdAsync(input.CostumerId);
-            if (costumer == null)
+            var Customer = await _servCustomer.GetByIdAsync(input.CustomerId);
+            if (Customer == null)
                 throw new HttpRequestException("Customer not found");
 
             var order = new Order
             {
                 Id = Guid.NewGuid(),
                 CreationDate = DateTime.UtcNow,
-                CostumerId = input.CostumerId,
+                CustomerId = input.CustomerId,
                 Status = IOrderStatus.Concluded
             };
 
@@ -70,6 +71,8 @@ namespace OrderManagement.Service
                 };
 
                 await _repOrderXProduct.CreateAsync(orderXProduct);
+
+                await _servProduct.UpdateByIdAsync(product.Id, new ProductInput { Description = product.Description, Name = product.Name, Price = product.Price, QuantityAvailable = product.QuantityAvailable - item.Quantity });
             }
 
             return order.Id;

@@ -2,7 +2,7 @@
 
 namespace OrderManagement.Dominio
 {
-    public class Costumer : Entity
+    public class Customer : Entity
     {
         [Required]
         public string Name { get; set; }
@@ -12,9 +12,9 @@ namespace OrderManagement.Dominio
 
         public string? Cellphone { get; set; }
 
-        public Costumer() { }
+        public Customer() { }
 
-        public Costumer(CostumerInput input)
+        public Customer(CustomerInput input)
         {
             Name = input.Name;
             Email = input.Email;

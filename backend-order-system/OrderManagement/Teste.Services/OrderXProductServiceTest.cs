@@ -14,8 +14,8 @@ namespace OrderManagement.API.Tests.Service
     [Collection("OrderXProduct Service Test")]
     public class OrderXProductServiceTest
     {
-        private readonly CostumerRepositoryMock _costumerRepo;
-        private readonly CostumerService _costumerService;
+        private readonly CustomerRepositoryMock _CustomerRepo;
+        private readonly CustomerService _CustomerService;
         private readonly ProductRepositoryMock _productRepo;
         private readonly ProductService _productService;
         private readonly OrderRepositoryMock _orderRepo;
@@ -23,14 +23,14 @@ namespace OrderManagement.API.Tests.Service
 
         public OrderXProductServiceTest()
         {
-            _costumerRepo = new CostumerRepositoryMock();
+            _CustomerRepo = new CustomerRepositoryMock();
             _productRepo = new ProductRepositoryMock();
             _productService = new ProductService(_productRepo);
-            _costumerService = new CostumerService(_costumerRepo);
+            _CustomerService = new CustomerService(_CustomerRepo);
             _orderRepo = new OrderRepositoryMock();
             _orderXProductRepo = new OrderXProductRepositoryMock();
 
-            var costumer = new Costumer(new CostumerInput
+            var Customer = new Customer(new CustomerInput
             {
                 Name = "Lucas Trindade",
                 Email = "lucas@email.com",
@@ -45,13 +45,13 @@ namespace OrderManagement.API.Tests.Service
                 QuantityAvailable = 5
             });
 
-            _costumerRepo.CreateAsync(costumer).Wait();
+            _CustomerRepo.CreateAsync(Customer).Wait();
             _productRepo.CreateAsync(product).Wait();
         }
 
         public OrderXProductService GetService()
         {
-            return new OrderXProductService(_orderRepo, _orderXProductRepo, _costumerService, _productService);
+            return new OrderXProductService(_orderRepo, _orderXProductRepo, _CustomerService, _productService);
         }
 
         #region Positive Scenarios
@@ -60,12 +60,12 @@ namespace OrderManagement.API.Tests.Service
         public async Task UpdateOrderXProductValid()
         {
             var service = GetService();
-            var costumer = (await _costumerRepo.GetAsync(new SearchfilterCostumer { })).First();
+            var Customer = (await _CustomerRepo.GetAsync(new SearchfilterCustomer { })).First();
             var product = (await _productRepo.GetAsync(new SearchfilterProduct { })).First();
 
             var input = new OrderXProductInput
             {
-                CostumerId = costumer.Id,
+                CustomerId = Customer.Id,
                 ProductXQuantities = new List<ProductXQuantities>
                 {
                     new ProductXQuantities
@@ -80,7 +80,7 @@ namespace OrderManagement.API.Tests.Service
 
             var updatedInput = new OrderXProductInput
             {
-                CostumerId = costumer.Id,
+                CustomerId = Customer.Id,
                 ProductXQuantities = new List<ProductXQuantities>
                 {
                     new ProductXQuantities
@@ -102,12 +102,12 @@ namespace OrderManagement.API.Tests.Service
         public async Task CancelOrder()
         {
             var service = GetService();
-            var costumer = (await _costumerRepo.GetAsync(new SearchfilterCostumer { })).First();
+            var Customer = (await _CustomerRepo.GetAsync(new SearchfilterCustomer { })).First();
             var product = (await _productRepo.GetAsync(new SearchfilterProduct { })).First();
 
             var input = new OrderXProductInput
             {
-                CostumerId = costumer.Id,
+                CustomerId = Customer.Id,
                 ProductXQuantities = new List<ProductXQuantities>
                 {
                     new ProductXQuantities
@@ -130,12 +130,12 @@ namespace OrderManagement.API.Tests.Service
         public async Task ReopenOrder()
         {
             var service = GetService();
-            var costumer = (await _costumerRepo.GetAsync(new SearchfilterCostumer { })).First();
+            var Customer = (await _CustomerRepo.GetAsync(new SearchfilterCustomer { })).First();
             var product = (await _productRepo.GetAsync(new SearchfilterProduct { })).First();
 
             var input = new OrderXProductInput
             {
-                CostumerId = costumer.Id,
+                CustomerId = Customer.Id,
                 ProductXQuantities = new List<ProductXQuantities>
                 {
                     new ProductXQuantities
@@ -159,12 +159,12 @@ namespace OrderManagement.API.Tests.Service
         public async Task DeleteOrder()
         {
             var service = GetService();
-            var costumer = (await _costumerRepo.GetAsync(new SearchfilterCostumer { })).First();
+            var Customer = (await _CustomerRepo.GetAsync(new SearchfilterCustomer { })).First();
             var product = (await _productRepo.GetAsync(new SearchfilterProduct { })).First();
 
             var input = new OrderXProductInput
             {
-                CostumerId = costumer.Id,
+                CustomerId = Customer.Id,
                 ProductXQuantities = new List<ProductXQuantities>
                 {
                     new ProductXQuantities
@@ -196,12 +196,12 @@ namespace OrderManagement.API.Tests.Service
         public async Task GetOrderById()
         {
             var service = GetService();
-            var costumer = (await _costumerRepo.GetAsync(new SearchfilterCostumer { })).First();
+            var Customer = (await _CustomerRepo.GetAsync(new SearchfilterCustomer { })).First();
             var product = (await _productRepo.GetAsync(new SearchfilterProduct { })).First();
 
             var input = new OrderXProductInput
             {
-                CostumerId = costumer.Id,
+                CustomerId = Customer.Id,
                 ProductXQuantities = new List<ProductXQuantities>
                 {
                     new ProductXQuantities
@@ -228,7 +228,7 @@ namespace OrderManagement.API.Tests.Service
             var service = GetService();
             var input = new OrderXProductInput
             {
-                CostumerId = Guid.NewGuid(),
+                CustomerId = Guid.NewGuid(),
                 ProductXQuantities = new List<ProductXQuantities>()
             };
 
@@ -271,12 +271,12 @@ namespace OrderManagement.API.Tests.Service
         public async Task UpdateOrderXProductWithInvalidProduct()
         {
             var service = GetService();
-            var costumer = (await _costumerRepo.GetAsync(new SearchfilterCostumer { })).First();
+            var Customer = (await _CustomerRepo.GetAsync(new SearchfilterCustomer { })).First();
             var product = (await _productRepo.GetAsync(new SearchfilterProduct { })).First();
 
             var initialInput = new OrderXProductInput
             {
-                CostumerId = costumer.Id,
+                CustomerId = Customer.Id,
                 ProductXQuantities = new List<ProductXQuantities>
                 {
                     new ProductXQuantities
@@ -291,7 +291,7 @@ namespace OrderManagement.API.Tests.Service
 
             var updatedInput = new OrderXProductInput
             {
-                CostumerId = costumer.Id,
+                CustomerId = Customer.Id,
                 ProductXQuantities = new List<ProductXQuantities>
                 {
                     new ProductXQuantities
@@ -309,12 +309,12 @@ namespace OrderManagement.API.Tests.Service
         public async Task UpdateOrderXProductWithInsufficientQuantity()
         {
             var service = GetService();
-            var costumer = (await _costumerRepo.GetAsync(new SearchfilterCostumer { })).First();
+            var Customer = (await _CustomerRepo.GetAsync(new SearchfilterCustomer { })).First();
             var product = (await _productRepo.GetAsync(new SearchfilterProduct { })).First();
 
             var initialInput = new OrderXProductInput
             {
-                CostumerId = costumer.Id,
+                CustomerId = Customer.Id,
                 ProductXQuantities = new List<ProductXQuantities>
                 {
                     new ProductXQuantities
@@ -329,7 +329,7 @@ namespace OrderManagement.API.Tests.Service
 
             var updatedInput = new OrderXProductInput
             {
-                CostumerId = costumer.Id,
+                CustomerId = Customer.Id,
                 ProductXQuantities = new List<ProductXQuantities>
                 {
                     new ProductXQuantities

@@ -24,15 +24,15 @@ namespace OrderManagement.Repository
         public async Task CreateAsync(Order order)
         {
             var query = @"
-                INSERT INTO [Order] (Id, CreationDate, CostumerId, Status)
-                VALUES (@Id, @CreationDate, @CostumerId, @Status)";
+                INSERT INTO [Order] (Id, CreationDate, CustomerId, Status)
+                VALUES (@Id, @CreationDate, @CustomerId, @Status)";
 
             var connection = CreateConnection();
             await connection.ExecuteAsync(query, new
             {
                 Id = order.Id,
                 CreationDate = order.CreationDate,
-                CostumerId = order.CostumerId,
+                CustomerId = order.CustomerId,
                 Status = (int)order.Status
             });
         }

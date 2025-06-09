@@ -8,10 +8,10 @@ using OrderManagement.Dominio.Utils;
 
 namespace OrderManagement.Repository
 {
-    public class CostumerRepository : ICostumerRepository
+    public class CustomerRepository : ICustomerRepository
     {
         private readonly string _connectionString;
-        public CostumerRepository(IConfiguration configuration)
+        public CustomerRepository(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
@@ -21,17 +21,17 @@ namespace OrderManagement.Repository
 
         public async Task<bool> CheckEmailExistsAsync(string email)
         {
-            var query = "SELECT * FROM Costumer " +
+            var query = "SELECT * FROM Customer " +
                 "WHERE Email = @Email";
             var connection = CreateConnection();
 
-            return await connection.QueryFirstOrDefaultAsync<Costumer>(query, new { Email = email }) != null;
+            return await connection.QueryFirstOrDefaultAsync<Customer>(query, new { Email = email }) != null;
         }
 
-        public async Task UpdateAsync(Costumer Costumer)
+        public async Task UpdateAsync(Customer Customer)
         {
             var query = @"
-                UPDATE Costumer SET
+                UPDATE Customer SET
                     CreationDate = @CreationDate,
                     Name = @Name,
                     Email = @Email,
@@ -39,39 +39,39 @@ namespace OrderManagement.Repository
                 WHERE ID = @ID";
             var connection = CreateConnection();
 
-            await connection.QueryAsync<Costumer>(query, Costumer);
+            await connection.QueryAsync<Customer>(query, Customer);
         }
 
-        public async Task CreateAsync(Costumer Costumer)
+        public async Task CreateAsync(Customer Customer)
         {
-            var query = "INSERT INTO Costumer (ID, CreationDate, Name, Email, Cellphone)" +
+            var query = "INSERT INTO Customer (ID, CreationDate, Name, Email, Cellphone)" +
                 "VALUES (@ID, @CreationDate, @Name, @Email, @Cellphone)";
             var connection = CreateConnection();
 
-            await connection.QueryAsync<Costumer>(query, Costumer);
+            await connection.QueryAsync<Customer>(query, Customer);
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            var query = "DELETE FROM Costumer " +
+            var query = "DELETE FROM Customer " +
                 "WHERE ID = @Id";
             var connection = CreateConnection();
 
-            await connection.QueryAsync<Costumer>(query, new { Id = id });
+            await connection.QueryAsync<Customer>(query, new { Id = id });
         }
 
-        public async Task<Costumer?> GetByIdAsync(Guid id)
+        public async Task<Customer?> GetByIdAsync(Guid id)
         {
-            var query = "SELECT * FROM Costumer " +
+            var query = "SELECT * FROM Customer " +
                 "WHERE ID = @Id";
             var connection = CreateConnection();
 
-            return await connection.QueryFirstOrDefaultAsync<Costumer>(query, new { Id = id });
+            return await connection.QueryFirstOrDefaultAsync<Customer>(query, new { Id = id });
         }
 
-        public async Task<IEnumerable<Costumer>> GetAsync(SearchfilterCostumer filter)
+        public async Task<IEnumerable<Customer>> GetAsync(SearchfilterCustomer filter)
         {
-            var query = @"SELECT * FROM Costumer WHERE 1=1";
+            var query = @"SELECT * FROM Customer WHERE 1=1";
             var parameters = new DynamicParameters();
 
             if (!string.IsNullOrWhiteSpace(filter.Name))
@@ -94,7 +94,7 @@ namespace OrderManagement.Repository
 
             var connection = CreateConnection();
 
-            return await connection.QueryAsync<Costumer>(query, parameters);
+            return await connection.QueryAsync<Customer>(query, parameters);
         }
     }
 }

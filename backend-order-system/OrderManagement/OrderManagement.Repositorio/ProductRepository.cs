@@ -26,9 +26,10 @@ namespace OrderManagement.Repository
                 UPDATE Product SET
                     CreationDate = @CreationDate,
                     Name = @Name,
-                    Email = @Email,
-                    Cellphone = @Cellphone
-                WHERE ID = @ID";
+                    Description = @Description,
+                    Price = @Price,
+                    QuantityAvailable = @QuantityAvailable
+                WHERE Id = @Id";
             var connection = CreateConnection();
 
             await connection.QueryAsync<Product>(query, Product);

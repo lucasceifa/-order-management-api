@@ -19,9 +19,9 @@ builder.Services.AddDbContext<MainDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MainDB")); 
 });
 
-#region Declaring dependencies from Costumer class
-builder.Services.AddTransient<CostumerService, CostumerService>();
-builder.Services.AddTransient<ICostumerRepository, CostumerRepository>();
+#region Declaring dependencies from Customer class
+builder.Services.AddTransient<CustomerService, CustomerService>();
+builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 #endregion
 
 #region Declaring dependencies from Product class
@@ -34,6 +34,16 @@ builder.Services.AddTransient<OrderXProductService, OrderXProductService>();
 builder.Services.AddTransient<IOrderXProductRepository, OrderXProductRepository>();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 #endregion
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
@@ -69,6 +79,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 

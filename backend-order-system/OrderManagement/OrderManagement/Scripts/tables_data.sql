@@ -1,6 +1,6 @@
-IF NOT EXISTS (SELECT 1 FROM Costumer)
+IF NOT EXISTS (SELECT 1 FROM Customer)
 BEGIN
-    INSERT INTO Costumer (Id, CreationDate, Name, Email, Cellphone) VALUES 
+    INSERT INTO Customer (Id, CreationDate, Name, Email, Cellphone) VALUES 
     (NEWID(), GETDATE(), 'Ana Lima', 'ana.lima@email.com', '11911110001'),
     (NEWID(), GETDATE(), 'Carlos Silva', 'carlos.silva@email.com', '11911110002'),
     (NEWID(), GETDATE(), 'Fernanda Souza', 'fernanda.souza@email.com', '11911110003'),

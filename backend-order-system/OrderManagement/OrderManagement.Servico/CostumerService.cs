@@ -5,47 +5,47 @@ using OrderManagement.Dominio.Utils;
 
 namespace OrderManagement.Service
 {
-    public class CostumerService
+    public class CustomerService
     {
-        private readonly ICostumerRepository _repCostumer;
+        private readonly ICustomerRepository _repCustomer;
 
-        public CostumerService(ICostumerRepository repCostumer)
+        public CustomerService(ICustomerRepository repCustomer)
         { 
-            _repCostumer = repCostumer;
+            _repCustomer = repCustomer;
         }
 
-        public async Task UpdateByIdAsync(Guid id, CostumerInput request)
+        public async Task UpdateByIdAsync(Guid id, CustomerInput request)
         {
             if (!request.Validate())
                 throw new ArgumentException("Invalid filled form");
 
-            var CostumerOriginal = await _repCostumer.GetByIdAsync(id);
-            if (CostumerOriginal == null)
-                throw new HttpRequestException("Costumer not found");
+            var CustomerOriginal = await _repCustomer.GetByIdAsync(id);
+            if (CustomerOriginal == null)
+                throw new HttpRequestException("Customer not found");
 
-            if (request.Email != CostumerOriginal.Email && await _repCostumer.CheckEmailExistsAsync(request.Email))
+            if (request.Email != CustomerOriginal.Email && await _repCustomer.CheckEmailExistsAsync(request.Email))
                 throw new DuplicateNameException("Email already in use");
 
-            CostumerOriginal.Email = request.Email;
-            CostumerOriginal.Cellphone = request.Cellphone;
-            CostumerOriginal.Name = request.Name;
+            CustomerOriginal.Email = request.Email;
+            CustomerOriginal.Cellphone = request.Cellphone;
+            CustomerOriginal.Name = request.Name;
 
-            await _repCostumer.UpdateAsync(CostumerOriginal);
+            await _repCustomer.UpdateAsync(CustomerOriginal);
         }
 
-        public async Task<Guid> CreateAsync(CostumerInput request)
+        public async Task<Guid> CreateAsync(CustomerInput request)
         {
             if (!request.Validate())
                 throw new ArgumentException("Invalid filled form");
 
-            if (await _repCostumer.CheckEmailExistsAsync(request.Email))
+            if (await _repCustomer.CheckEmailExistsAsync(request.Email))
                 throw new DuplicateNameException("Email already in use");
 
-            var newCostumer = new Costumer(request);
+            var newCustomer = new Customer(request);
 
-            await _repCostumer.CreateAsync(newCostumer);
+            await _repCustomer.CreateAsync(newCustomer);
 
-            return newCostumer.Id;
+            return newCustomer.Id;
         }
 
         public async Task DeleteAsync(Guid id)
@@ -53,31 +53,31 @@ namespace OrderManagement.Service
             if (id == Guid.Empty)
                 throw new ArgumentException("Invalid ID");
 
-            var Costumer = await _repCostumer.GetByIdAsync(id);
-            if (Costumer == null)
-                throw new HttpRequestException("Costumer not found");
+            var Customer = await _repCustomer.GetByIdAsync(id);
+            if (Customer == null)
+                throw new HttpRequestException("Customer not found");
 
-            await _repCostumer.DeleteAsync(id);
+            await _repCustomer.DeleteAsync(id);
         }
 
-        public async Task<Costumer> GetByIdAsync(Guid id)
+        public async Task<Customer> GetByIdAsync(Guid id)
         {
             if (id == Guid.Empty)
                 throw new ArgumentException("Invalid ID");
 
-            var response = await _repCostumer.GetByIdAsync(id);
+            var response = await _repCustomer.GetByIdAsync(id);
             if (response == null)
-                throw new HttpRequestException("Costumer not found");
+                throw new HttpRequestException("Customer not found");
 
             return response;
         }
 
-        public async Task<IEnumerable<Costumer>> GetAsync(SearchfilterCostumer filter)
+        public async Task<IEnumerable<Customer>> GetAsync(SearchfilterCustomer filter)
         {
             if (filter.CreationDate.HasValue && filter.CreationDate.Value > DateTime.Now)
                 throw new ArgumentException("Creation date cannot be later than today's date");
 
-            return await _repCostumer.GetAsync(filter);
+            return await _repCustomer.GetAsync(filter);
         }
     }
 }

@@ -9,23 +9,23 @@ using Xunit.Sdk;
 
 namespace OrderManagement.API.Tests.Service
 {
-    [Collection("Costumer Service Test")]
-    public class CostumerServiceTest
+    [Collection("Customer Service Test")]
+    public class CustomerServiceTest
     {
-        public CostumerService GetService()
+        public CustomerService GetService()
         {
-            var costumerRepository = new CostumerRepositoryMock();
-            return new CostumerService(costumerRepository);
+            var CustomerRepository = new CustomerRepositoryMock();
+            return new CustomerService(CustomerRepository);
         }
 
         public static class TestData
         {
-            public static IEnumerable<object[]> ValidCostumers =>
+            public static IEnumerable<object[]> ValidCustomers =>
                 new List<object[]>
                 {
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "Ana Souza",
                             Email = "ana.souza@email.com",
@@ -34,7 +34,7 @@ namespace OrderManagement.API.Tests.Service
                     },
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "Carlos Mendes",
                             Email = "carlos.mendes@email.com",
@@ -43,7 +43,7 @@ namespace OrderManagement.API.Tests.Service
                     },
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "Fernanda Lima",
                             Email = "fernanda.lima@email.com",
@@ -52,7 +52,7 @@ namespace OrderManagement.API.Tests.Service
                     },
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "João Pedro",
                             Email = "joao.pedro@email.com",
@@ -61,7 +61,7 @@ namespace OrderManagement.API.Tests.Service
                     },
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "Mariana Alves",
                             Email = "mariana.alves@email.com",
@@ -70,12 +70,12 @@ namespace OrderManagement.API.Tests.Service
                     }
                 };
 
-            public static IEnumerable<object[]> RepeatedEmailCostumers =>
+            public static IEnumerable<object[]> RepeatedEmailCustomers =>
                 new List<object[]>
                 {
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "Lucas Trindade",
                             Email = "repeated@email.com",
@@ -84,7 +84,7 @@ namespace OrderManagement.API.Tests.Service
                     },
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "Carlos Trindade",
                             Email = "repeated@email.com",
@@ -93,12 +93,12 @@ namespace OrderManagement.API.Tests.Service
                     }
                 };
 
-            public static IEnumerable<object[]> InvalidCostumers =>
+            public static IEnumerable<object[]> InvalidCustomers =>
                 new List<object[]>
                 {
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "",
                             Email = "test1@email.com",
@@ -107,7 +107,7 @@ namespace OrderManagement.API.Tests.Service
                     },
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "A",
                             Email = "test2@email.com",
@@ -116,7 +116,7 @@ namespace OrderManagement.API.Tests.Service
                     },
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "Lucas",
                             Email = "test3@email.com",
@@ -125,7 +125,7 @@ namespace OrderManagement.API.Tests.Service
                     },
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "Lucas Trindade",
                             Email = "",
@@ -134,7 +134,7 @@ namespace OrderManagement.API.Tests.Service
                     },
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "Lucas Trindade",
                             Email = "a@b",
@@ -143,7 +143,7 @@ namespace OrderManagement.API.Tests.Service
                     },
                     new object[]
                     {
-                        new CostumerInput
+                        new CustomerInput
                         {
                             Name = "Lucas Trindade",
                             Email = "emailwithoutat.com",
@@ -155,50 +155,50 @@ namespace OrderManagement.API.Tests.Service
 
         #region Positive Validation Methods
 
-        [Theory(DisplayName = "Creating valid Costumers")]
-        [MemberData(nameof(TestData.ValidCostumers), MemberType = typeof(TestData))]
-        public async Task CreateValidCostumers(CostumerInput input)
+        [Theory(DisplayName = "Creating valid Customers")]
+        [MemberData(nameof(TestData.ValidCustomers), MemberType = typeof(TestData))]
+        public async Task CreateValidCustomers(CustomerInput input)
         {
             var service = GetService();
             await service.CreateAsync(input);
 
-            var costumers = await service.GetAsync(new SearchfilterCostumer { });
+            var Customers = await service.GetAsync(new SearchfilterCustomer { });
 
-            Assert.True(costumers.Any(c => c.Name == input.Name && c.Cellphone == input.Cellphone && c.Email == input.Email));
+            Assert.True(Customers.Any(c => c.Name == input.Name && c.Cellphone == input.Cellphone && c.Email == input.Email));
         }
 
-        [Theory(DisplayName = "Creating and retrieving Costumer by ID")]
-        [MemberData(nameof(TestData.ValidCostumers), MemberType = typeof(TestData))]
-        public async Task GetByIdCostumer(CostumerInput input)
+        [Theory(DisplayName = "Creating and retrieving Customer by ID")]
+        [MemberData(nameof(TestData.ValidCustomers), MemberType = typeof(TestData))]
+        public async Task GetByIdCustomer(CustomerInput input)
         {
             var service = GetService();
             var response = await service.CreateAsync(input);
 
-            var costumer = await service.GetByIdAsync(response);
+            var Customer = await service.GetByIdAsync(response);
 
-            Assert.True(costumer != null && costumer.Id == response && costumer.Name == input.Name && costumer.Cellphone == input.Cellphone && costumer.Email == input.Email);
+            Assert.True(Customer != null && Customer.Id == response && Customer.Name == input.Name && Customer.Cellphone == input.Cellphone && Customer.Email == input.Email);
         }
 
-        [Theory(DisplayName = "Creating and deleting Costumer")]
-        [MemberData(nameof(TestData.ValidCostumers), MemberType = typeof(TestData))]
-        public async Task DeleteCostumerById(CostumerInput input)
+        [Theory(DisplayName = "Creating and deleting Customer")]
+        [MemberData(nameof(TestData.ValidCustomers), MemberType = typeof(TestData))]
+        public async Task DeleteCustomerById(CustomerInput input)
         {
             var service = GetService();
             var response = await service.CreateAsync(input);
 
-            var costumer = await service.GetByIdAsync(response);
+            var Customer = await service.GetByIdAsync(response);
             await service.DeleteAsync(response);
-            var costumers = await service.GetAsync(new SearchfilterCostumer { });
+            var Customers = await service.GetAsync(new SearchfilterCustomer { });
 
-            Assert.True(costumer != null && costumers.Count() == 0);
+            Assert.True(Customer != null && Customers.Count() == 0);
         }
 
-        [Theory(DisplayName = "Creating and updating Costumer")]
-        [MemberData(nameof(TestData.ValidCostumers), MemberType = typeof(TestData))]
-        public async Task UpdateCostumerById(CostumerInput input)
+        [Theory(DisplayName = "Creating and updating Customer")]
+        [MemberData(nameof(TestData.ValidCustomers), MemberType = typeof(TestData))]
+        public async Task UpdateCustomerById(CustomerInput input)
         {
             var service = GetService();
-            var baseInput = new CostumerInput
+            var baseInput = new CustomerInput
             {
                 Name = "Test Update",
                 Email = "test@email.com",
@@ -208,30 +208,30 @@ namespace OrderManagement.API.Tests.Service
             var response = await service.CreateAsync(baseInput);
             await service.UpdateByIdAsync(response, input);
 
-            var costumer = await service.GetByIdAsync(response);
+            var Customer = await service.GetByIdAsync(response);
 
-            Assert.True(costumer != null && costumer.Name == input.Name && costumer.Cellphone == input.Cellphone && costumer.Email == input.Email);
+            Assert.True(Customer != null && Customer.Name == input.Name && Customer.Cellphone == input.Cellphone && Customer.Email == input.Email);
         }
 
         #endregion
 
         #region Exception Validation Methods
 
-        [Theory(DisplayName = "Creating invalid Costumers from VALIDATE method")]
-        [MemberData(nameof(TestData.InvalidCostumers), MemberType = typeof(TestData))]
-        public async Task CreateInvalidCostumers(CostumerInput input)
+        [Theory(DisplayName = "Creating invalid Customers from VALIDATE method")]
+        [MemberData(nameof(TestData.InvalidCustomers), MemberType = typeof(TestData))]
+        public async Task CreateInvalidCustomers(CustomerInput input)
         {
             var service = GetService();
             await Assert.ThrowsAsync<ArgumentException>(async () => await service.CreateAsync(input));
         }
 
-        [Theory(DisplayName = "Updating invalid Costumers from VALIDATE method")]
-        [MemberData(nameof(TestData.InvalidCostumers), MemberType = typeof(TestData))]
-        public async Task UpdateInvalidCostumers(CostumerInput input)
+        [Theory(DisplayName = "Updating invalid Customers from VALIDATE method")]
+        [MemberData(nameof(TestData.InvalidCustomers), MemberType = typeof(TestData))]
+        public async Task UpdateInvalidCustomers(CustomerInput input)
         {
             var service = GetService();
 
-            var baseInput = new CostumerInput
+            var baseInput = new CustomerInput
             {
                 Name = "Test Update",
                 Email = "test@email.com",
@@ -243,34 +243,34 @@ namespace OrderManagement.API.Tests.Service
             await Assert.ThrowsAsync<ArgumentException>(async () => await service.UpdateByIdAsync(response, input));
         }
 
-        [Theory(DisplayName = "Updating Costumer with invalid ID")]
-        [MemberData(nameof(TestData.ValidCostumers), MemberType = typeof(TestData))]
-        public async Task UpdateCostumerWithInvalidId(CostumerInput input)
+        [Theory(DisplayName = "Updating Customer with invalid ID")]
+        [MemberData(nameof(TestData.ValidCustomers), MemberType = typeof(TestData))]
+        public async Task UpdateCustomerWithInvalidId(CustomerInput input)
         {
             var service = GetService();
             await Assert.ThrowsAsync<HttpRequestException>(async () => await service.UpdateByIdAsync(Guid.NewGuid(), input));
         }
 
-        [Fact(DisplayName = "Creating Costumer with duplicated email")]
-        public async Task CreateCostumerWithDuplicatedEmail()
+        [Fact(DisplayName = "Creating Customer with duplicated email")]
+        public async Task CreateCustomerWithDuplicatedEmail()
         {
             var service = GetService();
 
-            var inputs = TestData.RepeatedEmailCostumers.Select(e => e.First() as CostumerInput).ToList();
+            var inputs = TestData.RepeatedEmailCustomers.Select(e => e.First() as CustomerInput).ToList();
             await service.CreateAsync(inputs.First());
 
             await Assert.ThrowsAsync<DuplicateNameException>(async () => await service.CreateAsync(inputs.Last()));
         }
 
-        [Fact(DisplayName = "Updating Costumer with duplicated email")]
-        public async Task UpdateCostumerWithDuplicatedEmail()
+        [Fact(DisplayName = "Updating Customer with duplicated email")]
+        public async Task UpdateCustomerWithDuplicatedEmail()
         {
             var service = GetService();
 
-            var inputs = TestData.RepeatedEmailCostumers.Select(e => e.First() as CostumerInput).ToList();
+            var inputs = TestData.RepeatedEmailCustomers.Select(e => e.First() as CustomerInput).ToList();
             await service.CreateAsync(inputs.First());
 
-            var baseInput = new CostumerInput
+            var baseInput = new CustomerInput
             {
                 Name = "Test Update",
                 Email = "test@email.com",
@@ -282,39 +282,39 @@ namespace OrderManagement.API.Tests.Service
             await Assert.ThrowsAsync<DuplicateNameException>(async () => await service.UpdateByIdAsync(response, inputs.Last()));
         }
 
-        [Fact(DisplayName = "Deleting Costumer with empty ID")]
-        public async Task DeleteCostumerWithEmptyId()
+        [Fact(DisplayName = "Deleting Customer with empty ID")]
+        public async Task DeleteCustomerWithEmptyId()
         {
             var service = GetService();
             await Assert.ThrowsAsync<ArgumentException>(async () => await service.DeleteAsync(Guid.Empty));
         }
 
-        [Fact(DisplayName = "Deleting Costumer with random ID")]
-        public async Task DeleteCostumerWithRandomId()
+        [Fact(DisplayName = "Deleting Customer with random ID")]
+        public async Task DeleteCustomerWithRandomId()
         {
             var service = GetService();
             await Assert.ThrowsAsync<HttpRequestException>(async () => await service.DeleteAsync(Guid.NewGuid()));
         }
 
-        [Fact(DisplayName = "Getting Costumer by empty ID")]
-        public async Task GetCostumerByEmptyId()
+        [Fact(DisplayName = "Getting Customer by empty ID")]
+        public async Task GetCustomerByEmptyId()
         {
             var service = GetService();
             await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetByIdAsync(Guid.Empty));
         }
 
-        [Fact(DisplayName = "Getting Costumer by random ID")]
-        public async Task GetCostumerByRandomId()
+        [Fact(DisplayName = "Getting Customer by random ID")]
+        public async Task GetCustomerByRandomId()
         {
             var service = GetService();
             await Assert.ThrowsAsync<HttpRequestException>(async () => await service.GetByIdAsync(Guid.NewGuid()));
         }
 
-        [Fact(DisplayName = "Getting Costumers with invalid filter")]
-        public async Task GetCostumersWithInvalidFilter()
+        [Fact(DisplayName = "Getting Customers with invalid filter")]
+        public async Task GetCustomersWithInvalidFilter()
         {
             var service = GetService();
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetAsync(new SearchfilterCostumer() { CreationDate = DateTime.Now.AddDays(10) }));
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.GetAsync(new SearchfilterCustomer() { CreationDate = DateTime.Now.AddDays(10) }));
         }
 
         #endregion
